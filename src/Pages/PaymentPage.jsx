@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 import withStripe from "./WithStripe";
 
 // Load your Stripe publishable key
@@ -17,10 +18,7 @@ const PaymentPage = () => {
   const selectedDay = queryParams.get("day");
   const navigate = useNavigate();
 
-  const [paymentIntentClientSecret, setPaymentIntentClientSecret] = useState(
-    sessionStorage.getItem("paymentIntentClientSecret") || null
-  );
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentIntentClientSecret, setPaymentIntentClientSecret] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,13 +26,7 @@ const PaymentPage = () => {
   });
 
   const axiosPublic = useAxiosPublic();
-
-  const membershipPrices = {
-    basic: 10,
-    standard: 50,
-    premium: 100,
-  };
-
+  
   const stripe = useStripe();
   const elements = useElements();
 
@@ -46,68 +38,127 @@ const PaymentPage = () => {
     },
   });
 
+  const membershipPrices = {
+    basic: 10,
+    standard: 50,
+    premium: 100,
+  };
+
   useEffect(() => {
     if (selectedPlan && membershipPrices[selectedPlan] && !paymentIntentClientSecret) {
       const fetchPaymentIntent = async () => {
-        const amount = membershipPrices[selectedPlan] * 100; // Stripe expects the amount in cents
+        const amount = membershipPrices[selectedPlan] * 100; // Stripe expects amount in cents
         try {
           const response = await axiosPublic.post("/create-payment-intent", { amount });
           if (response.data?.clientSecret) {
             setPaymentIntentClientSecret(response.data.clientSecret);
-            sessionStorage.setItem("paymentIntentClientSecret", response.data.clientSecret); // Persist the clientSecret in sessionStorage
           }
         } catch (error) {
           console.error("Error fetching payment intent:", error.message);
         }
       };
-
       fetchPaymentIntent();
     }
-  }, [selectedPlan, paymentIntentClientSecret]);
-
-  useEffect(() => {
-    // If the paymentIntentClientSecret is updated, ensure the stripe elements are ready
-    if (paymentIntentClientSecret && stripe && elements) {
-      console.log("Stripe and Elements are initialized, ready for payment.");
-    }
-  }, [paymentIntentClientSecret, stripe, elements]);
+  }, [selectedPlan]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
+    // Basic validation for required fields
+    if (!formData.name || !formData.email || !formData.phone) {
+      Swal.fire({
+        icon: "error",
+        title: "Form Incomplete",
+        text: "Please fill out all fields.",
+      });
+      return;
+    }
+  
+    // Check if Stripe, Elements, or PaymentIntentSecret are not available
     if (!stripe || !elements || !paymentIntentClientSecret) {
       console.error("Stripe, elements, or paymentIntentClientSecret missing.");
       return;
     }
-
+  
     const cardElement = elements.getElement(CardElement);
     if (!cardElement) {
       console.error("CardElement missing.");
       return;
     }
-
-    try {
-      const { error, paymentIntent } = await stripe.confirmCardPayment(paymentIntentClientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: formData.name,
-            email: formData.email,
-          },
+  
+    // Confirm the card payment
+    const { error, paymentIntent } = await stripe.confirmCardPayment(paymentIntentClientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
         },
+      },
+    });
+  
+    // Handle payment error
+    if (error) {
+      console.error("Payment Error:", error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Payment Failed',
+        text: error.message,
       });
-
-      if (error) {
-        console.error("Payment Error:", error.message);
-      } else if (paymentIntent.status === "succeeded") {
-        setPaymentSuccess(true);
-        console.log("Payment Successful:", paymentIntent);
-        // Optionally, you can navigate to a success page or show a confirmation message
+    } 
+    // Payment successful
+    else if (paymentIntent.status === "succeeded") {
+      console.log("Payment Successful:", paymentIntent);
+  
+      // Prepare payment data to send to backend
+      const paymentData = {
+        paymentIntentId: paymentIntent.id,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        amount: membershipPrices[selectedPlan] * 100, // Amount in cents
+        selectedPlan,
+        selectedDay,
+        trainerId: id, // Pass trainer ID
+      };
+  
+      // Send payment data to backend
+      const response = await axiosPublic.post("/save-payment", paymentData);
+  
+      // Handle backend response
+      if (response.data?.message === 'Payment and booking saved successfully') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment Successful!',
+          text: `Your payment of $${membershipPrices[selectedPlan]} was successful.`,
+        }).then(() => {
+          // Reset form data and navigate to success page
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+          });
+          navigate("/success");
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Payment Saving Failed',
+          text: 'There was an issue saving your payment information.',
+        });
       }
-    } catch (err) {
-      console.error("Payment Exception:", err.message);
+    } 
+    // Payment failed
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Payment Failed',
+        text: 'The payment could not be processed.',
+      });
     }
   };
+  
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading trainer details!</div>;
@@ -165,7 +216,7 @@ const PaymentPage = () => {
               type="submit"
               className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
             >
-              {paymentSuccess ? "Payment Successful" : "Pay Now"}
+              Pay Now
             </button>
           </form>
         </div>

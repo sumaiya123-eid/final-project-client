@@ -11,7 +11,7 @@ export default function Navbar() {
 //   const [cart]=useCart();
 //   const [isAdmin] = useAdmin();
   return (
-    <div className="navbar bg-black fixed z-10 bg-opacity-30 *:text-white">
+    <div className="navbar bg-black *:text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,7 +59,7 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/menu">Our Menu</Link>
+            <Link to="/allTrainers">All Trainer</Link>
           </li>
           <li>
             <Link to="/shop/salad">Our Shop</Link>

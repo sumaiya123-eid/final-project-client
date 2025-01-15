@@ -15,6 +15,9 @@ import AppliedTrainers from "../Dashboard/AppliedTrainers";
 import AppliedTrainerDetails from "../Dashboard/AppliedTrainerDetails";
 import AddClassPage from "../Dashboard/AddClassPage";
 import AllClassesPage from "../Pages/AllClassesPage";
+import AddForum from "../Dashboard/AddForum";
+import BookedTrainer from "../Dashboard/BookedTrainer";
+import MyProfile from "../Dashboard/MyProfile";
 
 
  export const router = createBrowserRouter([
@@ -75,6 +78,18 @@ import AllClassesPage from "../Pages/AllClassesPage";
         {
           path:"/dashboard/addClass",
           element:<AddClassPage></AddClassPage>
+        },
+        {
+          path:"/dashboard/addForum",
+          element:<AddForum></AddForum>
+        },
+        {
+          path:"/dashboard/bookedTrainer",
+          element:<BookedTrainer></BookedTrainer>
+        },
+        {
+          path:"/dashboard/myProfile",
+          element:<MyProfile></MyProfile>
         },
       ]
     }

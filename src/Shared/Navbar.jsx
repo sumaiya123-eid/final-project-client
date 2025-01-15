@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 // import { AuthContext } from "../provider/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthProvider";
-// import useCart from "../hooks/useCart";
-// import useAdmin from "../hooks/useAdmin";
+import useAdmin from "../hooks/useAdmin";
+import useTrainer from "../hooks/useTrainer";
+
 
 export default function Navbar() {
   const { user, userLogOut } = useContext(AuthContext);
-//   const [cart]=useCart();
-//   const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
+  const [isTrainer] = useTrainer();
   return (
     <div className="navbar bg-black *:text-white">
       <div className="navbar-start">
@@ -62,28 +63,17 @@ export default function Navbar() {
             <Link to="/allTrainers">All Trainer</Link>
           </li>
           <li>
-            <Link to="/shop/salad">Our Shop</Link>
-          </li>
-          <li>
             <Link to="/allClasses">All Classes</Link>
           </li>
-          <li>
-            <Link to="/dashboard">Contact Us</Link>
-          </li>
-          {/* <li>
-            <Link to='/dashboard/cart'>
-              <button className="btn">
-              <div className="text-xl"><FaCartShopping></FaCartShopping></div>
-                <div className="badge badge-secondary">+{cart.length}</div>
-              </button>
-            </Link>
-          </li> */}
-          {/* {
-            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+          {
+            user && isAdmin && <li><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
+        }
+          {
+            user && isTrainer && <li><Link to="/dashboard/addForum">Dashboard</Link></li>
         }
         {
-            user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
-        } */}
+            user && !isAdmin && !isTrainer && <li><Link to="/dashboard/bookedTrainer">Dashboard</Link></li>
+        }
         </ul>
       </div>
       <div className="navbar-end">

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+// import useAxiosPublic from "../hooks/useAxiosPublic";
 import { FaDumbbell, FaFire, FaStar } from "react-icons/fa"; // Importing icons from react-icons
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const TrainerBookedPage = () => {
   const { email } = useParams(); // Access the email from URL params
@@ -22,11 +23,11 @@ const TrainerBookedPage = () => {
   };
 
   // Fetch trainer details from your API using email
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: trainer, isLoading, isError } = useQuery({
     queryKey: ["trainer", email],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/users/${email}`); // Fetch trainer by email
+      const { data } = await axiosSecure.get(`/users/${email}`); // Fetch trainer by email
       return data;
     },
   });

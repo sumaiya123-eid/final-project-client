@@ -13,7 +13,7 @@ const AppliedTrainers = () => {
     queryFn: async () => {
       const response = await axiosPublic.get("/users");
       // Filter users with `role: requested`
-      return response.data.filter(user => user.role === "requested");
+      return response.data.filter(user => user.status === "pending");
     },
   });
 

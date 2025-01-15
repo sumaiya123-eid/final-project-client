@@ -25,6 +25,21 @@ const dayOptions = [
   { value: "Sat", label: "Saturday" },
 ];
 
+const classOptions = [
+  { value: "Yoga", label: "Yoga" },
+  { value: "Cardio", label: "Cardio" },
+  { value: "Pilates", label: "Pilates" },
+  { value: "Strength Training", label: "Strength Training" },
+  { value: "Dance", label: "Dance" },
+  { value: "Kickboxing", label: "Kickboxing" },
+  { value: "Zumba", label: "Zumba" },
+  { value: "CrossFit", label: "CrossFit" },
+  { value: "Cycling", label: "Cycling" },
+  { value: "Swimming", label: "Swimming" },
+  { value: "Martial Arts", label: "Martial Arts" },
+];
+
+
 const BeATrainer = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset, setValue } = useForm();
@@ -42,22 +57,27 @@ const BeATrainer = () => {
       });
 
       if (res.data.success) {
-        // Prepare trainer data with the image URL
-        const trainerData = {
-          fullName: data.fullName,
-          email: user?.email, // Get email from AuthContext
+        // Prepare user application data
+        const userData = {
+          fullName: user?.displayName,
+          email: user?.email, // From AuthContext
           age: parseInt(data.age),
-          skills: JSON.stringify(data.skills),
-          availableDays: JSON.stringify(data.availableDays), 
+          skills: data.skills, // Already formatted as an array
+          availableDays: data.availableDays, // Already formatted as an array
           availableTime: data.availableTime,
           profileImage: res.data.data.display_url,
-          status: "pending",
+          role: "requested", // Set role to requested for application
+          classes: data.classes, // Selected classes
+          experience: data.experience, // Experience field
         };
 
-        // Submit trainer application data to the server
-        const trainerRes = await axiosPublic.post("/trainers", trainerData);
-        console.log(trainerRes.data)
-        if (trainerRes.data.result.insertedId) {
+        // Submit the application to the server
+        const userRes = await axiosPublic.patch(
+          `/users/apply/${user?.email}`,
+          userData
+        );
+
+        if (userRes.data.success) {
           reset(); // Reset form
           Swal.fire({
             position: "top-end",
@@ -69,7 +89,7 @@ const BeATrainer = () => {
         }
       }
     } catch (error) {
-      console.error("Error uploading image or submitting data:", error);
+      console.error("Error submitting application:", error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -83,16 +103,16 @@ const BeATrainer = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="form-control w-full my-6">
-          <label className="label">
-            <span className="label-text">Full Name*</span>
-          </label>
-          <input
-            type="text"
-            {...register("fullName", { required: true })}
-            placeholder="Full Name"
-            className="input input-bordered w-full"
-          />
-        </div>
+  <label className="label">
+    <span className="label-text">Full Name*</span>
+  </label>
+  <input
+    type="text"
+    value={user?.displayName || ""} // Set the value from the user context
+    readOnly
+    className="input input-bordered w-full bg-gray-100"
+  />
+</div>
 
         {/* Email (Read-only) */}
         <div className="form-control w-full my-6">
@@ -180,6 +200,37 @@ const BeATrainer = () => {
             {...register("profileImage", { required: true })}
             type="file"
             className="file-input w-full max-w-xs"
+          />
+        </div>
+
+        {/* Classes */}
+        <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text">Classes*</span>
+          </label>
+          <Select
+            isMulti
+            options={classOptions}
+            onChange={(selectedOptions) => {
+              setValue(
+                "classes",
+                selectedOptions ? selectedOptions.map((opt) => opt.value) : []
+              );
+            }}
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
+        </div>
+
+        {/* Experience */}
+        <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text">Experience*</span>
+          </label>
+          <textarea
+            {...register("experience", { required: true })}
+            placeholder="Describe your experience"
+            className="textarea textarea-bordered w-full"
           />
         </div>
 

@@ -5,7 +5,7 @@ import { FaDumbbell, FaFire, FaStar } from "react-icons/fa"; // Importing icons 
 import { useQuery } from "@tanstack/react-query";
 
 const TrainerBookedPage = () => {
-  const { id } = useParams(); // Access the trainerId from URL params
+  const { email } = useParams(); // Access the email from URL params
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedDay = queryParams.get("day"); // Get the selected day from the query string
@@ -21,12 +21,12 @@ const TrainerBookedPage = () => {
     premium: 100,
   };
 
-  // Fetch trainer details from your API
+  // Fetch trainer details from your API using email
   const axiosPublic = useAxiosPublic();
   const { data: trainer, isLoading, isError } = useQuery({
-    queryKey: ["trainer", id],
+    queryKey: ["trainer", email],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/trainers/${id}`);
+      const { data } = await axiosPublic.get(`/users/${email}`); // Fetch trainer by email
       return data;
     },
   });
@@ -38,9 +38,9 @@ const TrainerBookedPage = () => {
     if (selectedPlan) {
       // Get the price from the selected plan
       const price = membershipPrices[selectedPlan];
-      
-      // Redirect to the payment page with the selected plan, trainer ID, and selectedSlot
-      navigate(`/payment/${id}?plan=${selectedPlan}&price=${price}&day=${selectedDay}`);
+
+      // Redirect to the payment page with the selected plan, trainer email, and selectedSlot
+      navigate(`/payment/${email}?plan=${selectedPlan}&price=${price}&day=${selectedDay}`);
     } else {
       alert("Please select a membership plan.");
     }

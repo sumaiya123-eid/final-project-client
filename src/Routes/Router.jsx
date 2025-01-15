@@ -10,6 +10,12 @@ import TrainerDetails from "../Pages/TrainerDetails";
 import BeATrainer from "../Pages/BeATrainer";
 import TrainerBookedPage from "../Pages/TrainerBookedPage";
 import PaymentPage from "../Pages/PaymentPage";
+import Dashboard from "../Dashboard/Dashboard";
+import AppliedTrainers from "../Dashboard/AppliedTrainers";
+import AppliedTrainerDetails from "../Dashboard/AppliedTrainerDetails";
+import AddClassPage from "../Dashboard/AddClassPage";
+import AllClassesPage from "../Pages/AllClassesPage";
+
 
  export const router = createBrowserRouter([
     {
@@ -25,7 +31,7 @@ import PaymentPage from "../Pages/PaymentPage";
             element:<AllTrainers></AllTrainers>,
           },
         {
-            path:'/trainer/:id',
+            path:'/users/:email',
             element:<TrainerDetails></TrainerDetails>,
           },
         {
@@ -33,12 +39,16 @@ import PaymentPage from "../Pages/PaymentPage";
             element:<BeATrainer></BeATrainer>,
           },
         {
-            path:"/trainer-booked/:id",
+            path:"/trainer-booked/:email",
             element:<TrainerBookedPage></TrainerBookedPage>,
           },
         {
-            path:"/payment/:id",
+            path:"/payment/:email",
             element:<PaymentPage></PaymentPage>,
+          },
+        {
+            path:"/allClasses",
+            element:<AllClassesPage></AllClassesPage>,
           },
         {
             path:'/login',
@@ -50,4 +60,22 @@ import PaymentPage from "../Pages/PaymentPage";
           },
       ]
     },
+    {
+      path:'/dashboard',
+      element:<Dashboard></Dashboard>,
+      children:[
+        {
+          path:"/dashboard/appliedTrainers",
+          element:<AppliedTrainers></AppliedTrainers>
+        },
+        {
+          path:"/dashboard/appliedTrainerDetail/:email",
+          element:<AppliedTrainerDetails></AppliedTrainerDetails>
+        },
+        {
+          path:"/dashboard/addClass",
+          element:<AddClassPage></AddClassPage>
+        },
+      ]
+    }
   ]);

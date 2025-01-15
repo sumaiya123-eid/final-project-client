@@ -65,7 +65,10 @@ export default function Navbar() {
             <Link to="/shop/salad">Our Shop</Link>
           </li>
           <li>
-            <Link to="/contact">Contact Us</Link>
+            <Link to="/allClasses">All Classes</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Contact Us</Link>
           </li>
           {/* <li>
             <Link to='/dashboard/cart'>

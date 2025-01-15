@@ -12,7 +12,7 @@ const AllTrainers = () => {
   const { data: trainers = [], isLoading, isError } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/trainers");
+      const { data } = await axiosPublic.get("/users");
       return data;
     },
   });
@@ -31,7 +31,7 @@ const AllTrainers = () => {
         <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Our Trainers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {trainers
-            .filter((trainer) => trainer.status === "approved") // Only show approved trainers
+            .filter((trainer) => trainer.role === "trainer") // Only show approved trainers
             .map((trainer) => (
               <div
                 key={trainer._id} // use _id or unique id field from DB
@@ -74,7 +74,7 @@ const AllTrainers = () => {
                 </div>
                 <button
                   className="mt-6 px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md"
-                  onClick={() => navigate(`/trainer/${trainer._id}`)} // Adjusted for MongoDB _id
+                  onClick={() => navigate(`/users/${trainer.email}`)} // Adjusted for MongoDB _id
                 >
                   Know More
                 </button>

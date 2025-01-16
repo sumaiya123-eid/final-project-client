@@ -5,10 +5,13 @@ import { FaCartShopping } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useTrainer from "../hooks/useTrainer";
+import useUser from "../hooks/useDbUser";
 
 
 export default function Navbar() {
   const { user, userLogOut } = useContext(AuthContext);
+  const [currentUser]=useUser()
+  console.log(currentUser)
   const [isAdmin] = useAdmin();
   const [isTrainer] = useTrainer();
   return (
@@ -81,7 +84,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4 relative group">
             <img
               className="w-10 rounded-full group-hover:ring-4 group-hover:ring-[#7D0DC3] transition-all"
-              src={user?.photoURL}
+              src={currentUser?.photo || user?.photoURL}
               alt="User"
             />
             <button
@@ -91,7 +94,7 @@ export default function Navbar() {
               Log Out
             </button>
             <div className="hidden md:flex absolute top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white w-28 px-3 py-3 rounded-md text-base z-10">
-              <p className="text-center">{user?.displayName}</p>
+              <p className="text-center">{currentUser?.name}</p>
             </div>
           </div>
         ) : (

@@ -32,7 +32,7 @@ export default function Register() {
         return userUpdate(name, photo);
       })
       .then(() => {
-        const user = { name, email };
+        const user = { name, email,photo };
         return axiosPublic.post('/users', user);
       })
       .then((res) => {

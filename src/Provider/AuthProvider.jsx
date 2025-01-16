@@ -34,7 +34,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
          .then((result) => {
             const user = result.user;
             user.email = user.email;
-            console.log(user)
+            console.log(user.photoURL)
             setUser(user);
             return result;
          })

@@ -19,6 +19,7 @@ import AddForum from "../Dashboard/AddForum";
 import BookedTrainer from "../Dashboard/BookedTrainer";
 import MyProfile from "../Dashboard/MyProfile";
 import TrainersList from "../Dashboard/TrainersList";
+import ManageSlots from "../Dashboard/ManageSlots";
 
 
  export const router = createBrowserRouter([
@@ -95,6 +96,10 @@ import TrainersList from "../Dashboard/TrainersList";
         {
           path:"/dashboard/trainerList",
           element:<TrainersList></TrainersList>
+        },
+        {
+          path:"/dashboard/manageSlots",
+          element:<ManageSlots></ManageSlots>
         },
        
       ]

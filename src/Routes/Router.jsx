@@ -20,6 +20,7 @@ import BookedTrainer from "../Dashboard/BookedTrainer";
 import MyProfile from "../Dashboard/MyProfile";
 import TrainersList from "../Dashboard/TrainersList";
 import ManageSlots from "../Dashboard/ManageSlots";
+import AddNewSlot from "../Dashboard/AddNewSlot";
 
 
  export const router = createBrowserRouter([
@@ -100,6 +101,10 @@ import ManageSlots from "../Dashboard/ManageSlots";
         {
           path:"/dashboard/manageSlots",
           element:<ManageSlots></ManageSlots>
+        },
+        {
+          path:"/dashboard/addSlot",
+          element:<AddNewSlot></AddNewSlot>
         },
        
       ]

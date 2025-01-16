@@ -70,7 +70,7 @@ export default function Dashboard() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myClasses">
+                <NavLink to="/dashboard/addSlot">
                   <FaBook />
                   Add New slot
                 </NavLink>

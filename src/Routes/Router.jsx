@@ -18,6 +18,7 @@ import AllClassesPage from "../Pages/AllClassesPage";
 import AddForum from "../Dashboard/AddForum";
 import BookedTrainer from "../Dashboard/BookedTrainer";
 import MyProfile from "../Dashboard/MyProfile";
+import TrainersList from "../Dashboard/TrainersList";
 
 
  export const router = createBrowserRouter([
@@ -91,6 +92,11 @@ import MyProfile from "../Dashboard/MyProfile";
           path:"/dashboard/myProfile",
           element:<MyProfile></MyProfile>
         },
+        {
+          path:"/dashboard/trainerList",
+          element:<TrainersList></TrainersList>
+        },
+       
       ]
     }
   ]);

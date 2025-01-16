@@ -34,7 +34,7 @@ export default function Dashboard() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/addItems">
+                <NavLink to="/dashboard/trainerList">
                   <FaUtensilSpoon />
                   All Trainers
                 </NavLink>

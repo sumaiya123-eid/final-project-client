@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom"; // Updated to useNavigate
+import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -17,6 +18,7 @@ const AddClassPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const axiosPublic=useAxiosPublic()
+  const axiosSecure=useAxiosSecure()
   // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +68,7 @@ const AddClassPage = () => {
         };
 
         // Add the class to the database
-        const res = await axiosPublic.post("/classes", newClass);
+        const res = await axiosSecure.post("/classes", newClass);
 
         if (res.data.success) {
           Swal.fire({
@@ -74,7 +76,7 @@ const AddClassPage = () => {
             title: "Class Added!",
             text: "The new class has been successfully added.",
           });
-          navigate("/classes"); // Redirect to the classes page
+          navigate("/allClasses");
         } else {
           Swal.fire({
             icon: "error",

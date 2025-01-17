@@ -1,21 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AppliedTrainers = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   // Fetching applied trainers with React Query
   const { data: appliedTrainers = [], isLoading, isError } = useQuery({
-    queryKey: ["appliedTrainers"],  // Use `queryKey` instead of the array argument
+    queryKey: ["appliedTrainers"],
     queryFn: async () => {
-      const response = await axiosPublic.get("/users");
-      // Filter users with `role: requested`
-      return response.data.filter(user => user.status === "pending");
+      const response = await axiosSecure.get("/appliedTrainer");
+      console.log(response.data); // Add this to verify the data
+      return response.data;
     },
   });
+  
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Failed to load applied trainers.</p>;

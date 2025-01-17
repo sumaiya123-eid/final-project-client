@@ -1,26 +1,25 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AppliedTrainerDetails = () => {
-  const { email } = useParams(); // Access the email from the URL
-  const axiosPublic = useAxiosPublic();
+  const { email } = useParams();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  // Fetch trainer details based on the email parameter
   const { data: trainer, isLoading, isError } = useQuery({
     queryKey: ["trainerDetails", email],
     queryFn: async () => {
-      const response = await axiosPublic.get(`/users/${email}`);
+      const response = await axiosSecure.get(`/appliedTrainer/${email}`);
       return response.data;
     },
   });
 
   const handleApprove = async () => {
     try {
-      const result = await axiosPublic.patch(`/approve-trainer/${email}`);
+      const result = await axiosSecure.patch(`/approve-trainer/${email}`);
       if (result.data.success) {
         Swal.fire({
           icon: "success",
@@ -28,7 +27,7 @@ const AppliedTrainerDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/admin/applied-trainers"); // Navigate to the list of applied trainers
+        navigate("/dashboard/appliedTrainers"); // Navigate to the list of applied trainers
       } else {
         Swal.fire({
           icon: "error",

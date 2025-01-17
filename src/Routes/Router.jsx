@@ -21,6 +21,9 @@ import MyProfile from "../Dashboard/MyProfile";
 import TrainersList from "../Dashboard/TrainersList";
 import ManageSlots from "../Dashboard/ManageSlots";
 import AddNewSlot from "../Dashboard/AddNewSlot";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import TrainerRoute from "./TrainerRoute";
 
 
  export const router = createBrowserRouter([
@@ -70,18 +73,36 @@ import AddNewSlot from "../Dashboard/AddNewSlot";
       path:'/dashboard',
       element:<Dashboard></Dashboard>,
       children:[
+        
+        // admin only routes
         {
           path:"/dashboard/appliedTrainers",
-          element:<AppliedTrainers></AppliedTrainers>
+          element:<PrivateRoute><AdminRoute><AppliedTrainers></AppliedTrainers></AdminRoute></PrivateRoute>
         },
         {
           path:"/dashboard/appliedTrainerDetail/:email",
-          element:<AppliedTrainerDetails></AppliedTrainerDetails>
+          element:<PrivateRoute><AdminRoute><AppliedTrainerDetails></AppliedTrainerDetails></AdminRoute></PrivateRoute>
         },
         {
           path:"/dashboard/addClass",
-          element:<AddClassPage></AddClassPage>
+          element:<PrivateRoute><AdminRoute><AddClassPage></AddClassPage></AdminRoute></PrivateRoute>
         },
+        {
+          path:"/dashboard/trainerList",
+          element:<PrivateRoute><AdminRoute><TrainersList></TrainersList></AdminRoute></PrivateRoute>
+        },
+
+          // trainer only route
+          {
+            path:"/dashboard/manageSlots",
+            element:<PrivateRoute><TrainerRoute><ManageSlots></ManageSlots></TrainerRoute></PrivateRoute>
+          },
+          {
+            path:"/dashboard/addSlot",
+            element:<PrivateRoute><TrainerRoute><AddNewSlot></AddNewSlot></TrainerRoute></PrivateRoute>
+          },
+
+          // user only route
         {
           path:"/dashboard/addForum",
           element:<AddForum></AddForum>
@@ -93,18 +114,6 @@ import AddNewSlot from "../Dashboard/AddNewSlot";
         {
           path:"/dashboard/myProfile",
           element:<MyProfile></MyProfile>
-        },
-        {
-          path:"/dashboard/trainerList",
-          element:<TrainersList></TrainersList>
-        },
-        {
-          path:"/dashboard/manageSlots",
-          element:<ManageSlots></ManageSlots>
-        },
-        {
-          path:"/dashboard/addSlot",
-          element:<AddNewSlot></AddNewSlot>
         },
        
       ]

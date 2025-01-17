@@ -8,7 +8,6 @@ const ManageSlots = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
-  // Fetch the available slots using useQuery with correct queryKey and queryFn
   const {
     data: slots = {},
     isLoading,

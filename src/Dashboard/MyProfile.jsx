@@ -3,13 +3,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { FaUserCircle, FaEdit, FaEnvelope, FaClock } from 'react-icons/fa';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 export default function MyProfile() {
   const { user } = useContext(AuthContext);
-  console.log(user?.photoURL)
   const axiosPublic = useAxiosPublic();
 
   const { data, refetch } = useQuery({
@@ -78,13 +78,13 @@ export default function MyProfile() {
       });
 
       if (res.status === 200) {
-                 Swal.fire({
-                   position: "top-end",
-                   icon: "success",
-                   title: "Profile updated successfully!",
-                   showConfirmButton: false,
-                   timer: 1500,
-                 });
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Profile updated successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
         refetch(); // Refetch data to ensure the latest data is shown
       }
     } catch (error) {
@@ -93,64 +93,101 @@ export default function MyProfile() {
     }
   };
 
+  // Format the last login time
+  const getLastLoginTime = () => {
+    if (user?.metadata?.lastSignInTime) {
+      const lastSignInDate = new Date(user.metadata.lastSignInTime);
+      return lastSignInDate.toLocaleString(); // Customize the format if needed
+    }
+    return 'Not available';
+  };
+
   return (
-    <div>
-      <form onSubmit={handleProfileUpdate} className="card-body">
-        {/* Email Field (Read-only) */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            value={user?.email}
-            className="input input-bordered"
-            readOnly
-          />
-        </div>
-
-        {/* Current Profile Image */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Current Image</span>
-          </label>
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 flex justify-center items-center p-6 ">
+      <div className="w-full max-w-sm bg-black rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
+        <div className="flex justify-center mb-4">
+          {/* Profile Image Section */}
+          <div className="relative ">
+          <div className="w-28 h-28 rounded-full p-1 bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 mx-auto">
           <img
-            key={imageUrl}  // Adding key to force re-render when image URL changes
-            src={imageUrl || user?.photoURL} 
-            alt="Profile" 
-            className="w-20 h-20 rounded-full cursor-pointer"
-            onClick={() => document.getElementById('image-upload').click()} // Open file input when image is clicked
-          />
-          <input
-            type="file"
-            id="image-upload"
-            className="hidden"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+              key={imageUrl} // Adding key to force re-render when image URL changes
+              src={imageUrl || user?.photoURL}
+              alt="Profile"
+              className="w-full h-full rounded-full shadow-lg transform transition-transform duration-500 hover:scale-110"
+              onClick={() => document.getElementById('image-upload').click()} // Open file input when image is clicked
+            />
+          </div>
+            <input
+              type="file"
+              id="image-upload"
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            <div className="mt-2 text-center text-blue-400 cursor-pointer" onClick={() => document.getElementById('image-upload').click()}>
+              Change Profile
+            </div>
+          </div>
         </div>
 
-        {/* Name Field */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
-          <input
-            type="text"
-            name="name"
-            defaultValue={data?.name}
-            className="input input-bordered"
-            required
-          />
-        </div>
+        <form onSubmit={handleProfileUpdate} className="space-y-4">
+          {/* Email Field (Read-only) */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-lg font-semibold text-white">
+                <FaEnvelope size={20} className="mr-2 text-blue-400" /> Email
+              </span>
+            </label>
+            <input
+              type="email"
+              value={user?.email}
+              className="input input-bordered w-full bg-gray-800 text-white rounded-lg py-2 px-3 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+              readOnly
+            />
+          </div>
 
-        {/* Submit Button */}
-        <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">
-            Update Profile
-          </button>
-        </div>
-      </form>
+          {/* Name Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-lg font-semibold text-white">
+                <FaEdit size={20} className="mr-2 text-blue-400" /> Name
+              </span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={data?.name}
+              className="input input-bordered w-full bg-gray-800 text-white rounded-lg py-2 px-3 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          {/* Last Login */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-lg font-semibold text-white">
+                <FaClock size={20} className="mr-2 text-blue-400" /> Last Login
+              </span>
+            </label>
+            <input
+              type="text"
+              value={getLastLoginTime()}
+              className="input input-bordered w-full bg-gray-800 text-white rounded-lg py-2 px-3 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+              readOnly
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="form-control mt-4">
+            <button
+              type="submit"
+              className="btn bg-green-400 w-full py-2 rounded-lg hover:bg-blue-600 transition-all ease-in-out duration-200 text-black font-bold text-base"
+            >
+              Update Profile
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

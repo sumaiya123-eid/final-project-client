@@ -75,7 +75,7 @@ export default function Navbar() {
             user && isTrainer && <li><Link to="/dashboard/addForum">Dashboard</Link></li>
         }
         {
-            user && !isAdmin && !isTrainer && <li><Link to="/dashboard/bookedTrainer">Dashboard</Link></li>
+            user && !isAdmin && !isTrainer && <li><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
         }
         </ul>
       </div>

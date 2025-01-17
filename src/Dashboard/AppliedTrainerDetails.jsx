@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -8,6 +8,8 @@ const AppliedTrainerDetails = () => {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+  const [rejectionFeedback, setRejectionFeedback] = useState("");
 
   const { data: trainer, isLoading, isError } = useQuery({
     queryKey: ["trainerDetails", email],
@@ -33,6 +35,49 @@ const AppliedTrainerDetails = () => {
           icon: "error",
           title: "Error",
           text: result.data.message || "Failed to approve trainer.",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error?.response?.data?.message || "Something went wrong!",
+      });
+    }
+  };
+
+  const handleReject = async () => {
+    if (!rejectionFeedback.trim()) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Please provide feedback before rejecting.",
+      });
+      return;
+    }
+
+    try {
+      // Send rejection feedback and change status to rejected
+      const result = await axiosSecure.patch(`/reject-trainer/${email}`, {
+        feedback: rejectionFeedback,
+      });
+
+      if (result.data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Trainer rejected successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        // Close modal and navigate to Applied Trainers section
+        setIsRejectModalOpen(false);
+        navigate("/dashboard/appliedTrainers"); // Navigate to the list of applied trainers
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: result.data.message || "Failed to reject trainer.",
         });
       }
     } catch (error) {
@@ -80,8 +125,53 @@ const AppliedTrainerDetails = () => {
         >
           Approve
         </button>
-        <button className="btn btn-danger">Reject</button>
+
+        <button
+          className="btn btn-danger"
+          onClick={() => setIsRejectModalOpen(true)}
+        >
+          Reject
+        </button>
       </div>
+
+      {/* Reject Modal */}
+      {isRejectModalOpen && (
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
+          <div className="modal modal-open">
+            <div className="modal-box">
+              <h2 className="text-xl font-bold">Reject Trainer</h2>
+              <p><strong>Name:</strong> {trainer.fullName}</p>
+              <p><strong>Email:</strong> {trainer.email}</p>
+              <p><strong>Phone:</strong> {trainer.phone || "Not provided"}</p>
+              <p><strong>Address:</strong> {trainer.address || "Not provided"}</p>
+              <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
+              <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
+              <textarea
+                className="textarea textarea-bordered w-full mt-4"
+                placeholder="Provide feedback for rejection..."
+                value={rejectionFeedback}
+                onChange={(e) => setRejectionFeedback(e.target.value)}
+                rows="4"
+              ></textarea>
+              <p className="mt-2 text-sm text-gray-500">Please provide a reason for rejection.</p>
+              <div className="modal-action">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setIsRejectModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-error"
+                  onClick={handleReject}
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

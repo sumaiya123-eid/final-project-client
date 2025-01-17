@@ -16,7 +16,6 @@ import AppliedTrainerDetails from "../Dashboard/AppliedTrainerDetails";
 import AddClassPage from "../Dashboard/AddClassPage";
 import AllClassesPage from "../Pages/AllClassesPage";
 import AddForum from "../Dashboard/AddForum";
-import BookedTrainer from "../Dashboard/BookedTrainer";
 import MyProfile from "../Dashboard/MyProfile";
 import TrainersList from "../Dashboard/TrainersList";
 import ManageSlots from "../Dashboard/ManageSlots";
@@ -24,6 +23,8 @@ import AddNewSlot from "../Dashboard/AddNewSlot";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TrainerRoute from "./TrainerRoute";
+import ActivityLog from "../Dashboard/ActivityLog";
+import MyBookedTrainer from "../Dashboard/MyBookedTrainer";
 
 
  export const router = createBrowserRouter([
@@ -108,12 +109,16 @@ import TrainerRoute from "./TrainerRoute";
           element:<AddForum></AddForum>
         },
         {
-          path:"/dashboard/bookedTrainer",
-          element:<BookedTrainer></BookedTrainer>
-        },
-        {
           path:"/dashboard/myProfile",
           element:<MyProfile></MyProfile>
+        },
+        {
+          path:"/dashboard/activityLog",
+          element:<ActivityLog></ActivityLog>
+        },
+        {
+          path:"/dashboard/myBookedTrainer",
+          element:<MyBookedTrainer></MyBookedTrainer>
         },
        
       ]

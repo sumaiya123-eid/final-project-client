@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome, FaShoppingCart, FaUtensilSpoon } from "react-icons/fa";
+import { FaCalendarCheck, FaClipboardList, FaHome, FaShoppingCart, FaUserAlt, FaUtensilSpoon } from "react-icons/fa";
 import {
   FaBangladeshiTakaSign,
   FaBook,
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex">
-      <div className="w-[250px] bg-[#D1A054] min-h-screen">
+      <div className="w-[250px] bg-green-400 min-h-screen *:text-black *:font-bold">
         <h3 className="flex justify-center font-bold mt-6 ">BISTRO BOSS </h3>
         <h3 className="text-center mb-10">RESTAURANT</h3>
         <ul className="menu">
@@ -88,20 +88,20 @@ export default function Dashboard() {
           {!isAdmin && !isTrainer && (
             <>
               <li>
-                <Link to="/dashboard/userHome">
-                  <FaHome />
+                <Link to="/dashboard/activityLog">
+                <FaClipboardList />
                   Activity Log page
                 </Link>
               </li>
               <li>
                 <Link to="/dashboard/myProfile">
-                  <FaBook />
+                <FaUserAlt />
                   Profile Page
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard/bookedTrainer">
-                  <FaBangladeshiTakaSign />
+                <Link to="/dashboard/myBookedTrainer">
+                <FaCalendarCheck />
                   Booked Trainer
                 </Link>
               </li>

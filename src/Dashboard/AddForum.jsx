@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query"; // Import useQuery from React 
 
 const AddForum = () => {
   const { user } = useContext(AuthContext); // Get logged-in user info
+  
   const [forumData, setForumData] = useState({
     title: "",
     content: "",
@@ -14,7 +15,6 @@ const AddForum = () => {
     email: user?.email || "",
     createdAt: "", // To store the created date
   });
-
   const axiosSecure = useAxiosSecure(); // Get axiosSecure instance
 
   // Fetch the user's role from the backend
@@ -35,7 +35,7 @@ const AddForum = () => {
       }));
     }
   }, [userRole]); // Effect runs when userRole changes
-
+  console.log(user.email)
   // Function to send the POST request for creating a forum post
   const createForumPost = async (forumData) => {
     const response = await axiosSecure.post("/forums", forumData); // Use axiosSecure to make the POST request

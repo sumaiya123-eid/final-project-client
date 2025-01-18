@@ -26,6 +26,7 @@ import TrainerRoute from "./TrainerRoute";
 import ActivityLog from "../Dashboard/ActivityLog";
 import MyBookedTrainer from "../Dashboard/MyBookedTrainer";
 import ForumPage from "../Pages/ForumPage";
+import AdminOrTrainerRoute from "./AdminOrTrainerRoute";
 
 
  export const router = createBrowserRouter([
@@ -107,12 +108,14 @@ import ForumPage from "../Pages/ForumPage";
             path:"/dashboard/addSlot",
             element:<PrivateRoute><TrainerRoute><AddNewSlot></AddNewSlot></TrainerRoute></PrivateRoute>
           },
+         
+          // admin or trainer route
+          {
+            path:"/dashboard/addForum",
+            element:<PrivateRoute><AdminOrTrainerRoute><AddForum></AddForum></AdminOrTrainerRoute></PrivateRoute>
+          },
 
           // user only route
-        {
-          path:"/dashboard/addForum",
-          element:<AddForum></AddForum>
-        },
         {
           path:"/dashboard/myProfile",
           element:<MyProfile></MyProfile>

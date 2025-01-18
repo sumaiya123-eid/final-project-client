@@ -57,6 +57,12 @@ export default function Dashboard() {
                   Add New Class
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/addForum">
+                  <FaList />
+                  Add new Forum
+                </NavLink>
+              </li>
             </>
           )}
 

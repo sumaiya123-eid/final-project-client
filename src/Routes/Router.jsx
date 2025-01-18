@@ -27,6 +27,7 @@ import ActivityLog from "../Dashboard/ActivityLog";
 import MyBookedTrainer from "../Dashboard/MyBookedTrainer";
 import ForumPage from "../Pages/ForumPage";
 import AdminOrTrainerRoute from "./AdminOrTrainerRoute";
+import ForumDetails from "../Pages/ForumDetails";
 
 
  export const router = createBrowserRouter([
@@ -65,6 +66,10 @@ import AdminOrTrainerRoute from "./AdminOrTrainerRoute";
         {
             path:"/allForum",
             element:<ForumPage></ForumPage>,
+          },
+        {
+            path:"/forumDetails/:id",
+            element:<ForumDetails></ForumDetails>,
           },
         {
             path:'/login',

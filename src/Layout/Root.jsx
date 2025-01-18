@@ -4,7 +4,7 @@ import Navbar from "../Shared/Navbar";
 
 export default function Root() {
   return (
-    <div>
+    <div className="bg-black">
         <Navbar></Navbar>
         <Outlet></Outlet>
     </div>

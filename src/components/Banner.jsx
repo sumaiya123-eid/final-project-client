@@ -55,7 +55,7 @@ const Banner = () => {
   ];
 
   return (
-    <section className="w-full bg-gray-100 overflow-hidden">
+    <section className="w-full bg-black overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index} className="relative">

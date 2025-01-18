@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex">
-      <div className="w-[250px] bg-yellow-500 min-h-screen *:text-black *:font-bold">
+      <div className="w-[250px] bg-yellow-400 min-h-screen *:text-black *:font-bold">
         <h3 className="flex justify-center font-bold mt-6 ">BISTRO BOSS </h3>
         <h3 className="text-center mb-10">RESTAURANT</h3>
         <ul className="menu">
@@ -146,7 +146,7 @@ export default function Dashboard() {
         </ul>
       </div>
 
-      <div className="flex-1">
+      <div className="flex-1 bg-black">
         <Outlet />
       </div>
     </div>

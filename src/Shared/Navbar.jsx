@@ -16,7 +16,7 @@ export default function Navbar() {
   const [isAdmin] = useAdmin();
   const [isTrainer] = useTrainer();
   return (
-    <div className="navbar bg-yellow-500 *:text-white">
+    <div className="navbar p-4 bg-yellow-400 *:text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

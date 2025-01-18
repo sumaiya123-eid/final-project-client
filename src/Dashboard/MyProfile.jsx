@@ -103,12 +103,12 @@ export default function MyProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 flex justify-center items-center p-6 ">
-      <div className="w-full max-w-sm bg-black rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
+    <div className="min-h-screen bg-black flex justify-center items-center p-6 ">
+      <div className="w-full max-w-sm bg-black border-4 border-yellow-400 rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
         <div className="flex justify-center mb-4">
           {/* Profile Image Section */}
           <div className="relative ">
-          <div className="w-28 h-28 rounded-full p-1 bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 mx-auto">
+          <div className="w-28 h-28 rounded-full p-1 bg-yellow-500 mx-auto">
           <img
               key={imageUrl} // Adding key to force re-render when image URL changes
               src={imageUrl || user?.photoURL}
@@ -124,7 +124,7 @@ export default function MyProfile() {
               accept="image/*"
               onChange={handleImageChange}
             />
-            <div className="mt-2 text-center text-blue-400 cursor-pointer" onClick={() => document.getElementById('image-upload').click()}>
+            <div className="mt-2 text-center text-yellow-500 cursor-pointer" onClick={() => document.getElementById('image-upload').click()}>
               Change Profile
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function MyProfile() {
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg font-semibold text-white">
-                <FaEnvelope size={20} className="mr-2 text-blue-400" /> Email
+                <FaEnvelope size={20} className="mr-2 text-yellow-500" /> Email
               </span>
             </label>
             <input
@@ -150,7 +150,7 @@ export default function MyProfile() {
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg font-semibold text-white">
-                <FaEdit size={20} className="mr-2 text-blue-400" /> Name
+                <FaEdit size={20} className="mr-2 text-yellow-500" /> Name
               </span>
             </label>
             <input
@@ -166,7 +166,7 @@ export default function MyProfile() {
           <div className="form-control">
             <label className="label">
               <span className="label-text text-lg font-semibold text-white">
-                <FaClock size={20} className="mr-2 text-blue-400" /> Last Login
+                <FaClock size={20} className="mr-2 text-yellow-500" /> Last Login
               </span>
             </label>
             <input
@@ -181,7 +181,7 @@ export default function MyProfile() {
           <div className="form-control mt-4">
             <button
               type="submit"
-              className="btn bg-green-400 w-full py-2 rounded-lg hover:bg-blue-600 transition-all ease-in-out duration-200 text-black font-bold text-base"
+              className="btn bg-yellow-500 border-none hover:bg-blue-600 transition-all ease-in-out duration-200 text-black font-bold text-base"
             >
               Update Profile
             </button>

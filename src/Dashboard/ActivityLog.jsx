@@ -73,14 +73,14 @@ const ActivityLog = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-blue-500 via-green-400 to-blue-500 py-16">
+    <section className="bg-black py-16 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-white mb-8 text-center drop-shadow-lg">
           Activity Log
         </h2>
         <div className="overflow-x-auto">
           <table className="table w-full text-center text-white font-bold">
-            <thead className="*:text-black *:font-bold">
+            <thead className="*:text-yellow-400 *:font-bold">
               <tr>
                 <th>Profile</th>
                 <th>Name</th>

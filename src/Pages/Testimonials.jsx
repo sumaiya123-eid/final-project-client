@@ -36,8 +36,8 @@ const Testimonials = () => {
   }
 
   return (
-    <div className="w-10/12 mx-auto mt-12 p-10 bg-yellow-500 animate__animated animate__fadeInUp rounded-lg shadow-lg">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">Customer Testimonials</h2>
+    <div className="w-10/12 mx-auto mt-12 p-10 bg-yellow-400 animate__animated animate__fadeInUp rounded-lg shadow-lg">
+      <h2 className="text-3xl font-semibold text-gray-800 my-4 text-center">Customer Testimonials</h2>
 
       {/* Swipe Right to See More Reviews */}
       <div className="flex justify-center items-center mb-6">
@@ -63,7 +63,7 @@ const Testimonials = () => {
       >
         {data.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="border border-yellow-600 rounded-lg p-6 shadow-xl bg-yellow-200 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+            <div className="border-2 border-yellow-600 rounded-lg p-6 shadow-xl bg-yellow-200 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
               <div className="flex items-center mb-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
                   <p className="text-xl font-semibold text-white">

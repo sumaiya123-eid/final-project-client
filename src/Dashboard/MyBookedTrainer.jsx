@@ -21,8 +21,8 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const MyBookedTrainer = () => {
   const { user } = useContext(AuthContext); // Get user info from context
-  const axiosPublic=useAxiosPublic()
-  const axiosSecure=useAxiosSecure()
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [isModalOpen, setModalOpen] = useState(false); // Modal state
   const [reviewData, setReviewData] = useState({ rating: 0, feedback: "" }); // Review data state
 
@@ -66,7 +66,7 @@ const MyBookedTrainer = () => {
       Swal.fire("Error", "User email is missing. Cannot submit review.", "error");
       return;
     }
-  
+
     try {
       const payload = {
         userId: user.email, // Use the user's email as the identifier
@@ -74,10 +74,10 @@ const MyBookedTrainer = () => {
         feedback: reviewData.feedback,
       };
       console.log("Submitting Payload:", payload);
-  
+
       const response = await axiosSecure.post("/reviews", payload);
       Swal.fire("Success", "Your review has been submitted!", "success");
-  
+
       // Clear the modal content and close it after successful submission
       setReviewData({ rating: 0, feedback: "" });
       setModalOpen(false); // Close the modal
@@ -85,53 +85,52 @@ const MyBookedTrainer = () => {
       Swal.fire("Error", err.response?.data?.message || "Failed to submit review", "error");
     }
   };
-  
 
   return (
-    <div className="max-w-4xl mx-auto mt-8 p-6 bg-white animate__animated animate__fadeInUp">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Booked Trainer Details</h2>
+    <div className="max-w-4xl mx-auto mt-8 p-6 bg-black text-white animate__animated animate__fadeInUp">
+      <h2 className="text-3xl font-semibold text-yellow-500 mb-6 text-center">Booked Trainer Details</h2>
 
       {/* Trainer Info */}
       <div className="space-y-6">
-        <h3 className="text-2xl font-bold text-gray-700 mb-4">Trainer Information</h3>
+        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Trainer Information</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex items-center space-x-3">
-            <FaUserAlt size={24} className="text-blue-500" />
+            <FaUserAlt size={24} className="text-yellow-500" />
             <p className="text-xl font-medium">Name: {trainer.fullName || "Not available"}</p>
           </div>
 
           <div className="flex items-center space-x-3">
-            <FaEnvelope size={24} className="text-green-500" />
+            <FaEnvelope size={24} className="text-yellow-500" />
             <p className="text-xl font-medium">Email: {trainer.email || "Not available"}</p>
           </div>
           <div className="flex items-center space-x-3">
-            <FaBirthdayCake size={24} className="text-green-500" />
+            <FaBirthdayCake size={24} className="text-yellow-500" />
             <p className="text-xl font-medium">Age: {trainer.age || "Not available"}</p>
           </div>
 
           <div className="flex items-center space-x-3">
-            <FaClock size={24} className="text-purple-500" />
+            <FaClock size={24} className="text-yellow-500" />
             <p className="text-xl font-medium">Available Time: {trainer.availableTime || "Not specified"}</p>
           </div>
 
           <div className="flex items-center space-x-3">
-            <FaToolbox size={24} className="text-orange-500" />
+            <FaToolbox size={24} className="text-yellow-500" />
             <p className="text-xl font-medium">Experience: {trainer.experience || "Not specified"}</p>
           </div>
         </div>
 
         {/* Skills */}
         <div>
-          <h3 className="text-xl font-medium flex items-center gap-2 text-gray-700">
-            <FaStar className="text-yellow-500" /> <p className="text-black">Skills:</p>
+          <h3 className="text-xl font-medium flex items-center gap-2 text-yellow-400">
+            <FaStar className="text-yellow-500" /> <p className="text-white">Skills:</p>
           </h3>
           <div className="flex gap-3 flex-wrap">
             {trainer.skills?.length > 0 ? (
               trainer.skills.slice(0, 3).map((skill, index) => (
                 <button
                   key={index}
-                  className="text-xs font-medium text-white bg-blue-500 px-3 py-1 rounded-lg hover:bg-blue-600 transition duration-200"
+                  className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
                 >
                   {skill}
                 </button>
@@ -144,15 +143,15 @@ const MyBookedTrainer = () => {
 
         {/* Classes */}
         <div>
-          <h3 className="text-xl font-medium flex items-center gap-2 text-gray-700">
-            <FaListAlt className="text-green-500" /> <p className="text-black">Classes:</p>
+          <h3 className="text-xl font-medium flex items-center gap-2 text-yellow-400">
+            <FaListAlt className="text-yellow-500" /> <p className="text-white">Classes:</p>
           </h3>
           <div className="flex gap-3 flex-wrap">
             {trainer.classes?.length > 0 ? (
               trainer.classes.slice(0, 3).map((classItem, index) => (
                 <button
                   key={index}
-                  className="text-xs font-medium text-white bg-green-500 px-3 py-1 rounded-lg hover:bg-green-600 transition duration-200"
+                  className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
                 >
                   {classItem}
                 </button>
@@ -166,20 +165,20 @@ const MyBookedTrainer = () => {
 
       {/* Booking Info */}
       <div className="space-y-6 mt-6">
-        <h3 className="text-2xl font-bold text-gray-700 mb-4">Booking Information</h3>
+        <h3 className="text-2xl font-bold text-yellow-400 mb-4">Booking Information</h3>
 
         <div className="flex items-center space-x-3">
-          <FaRegCheckCircle size={24} className="text-green-500" />
+          <FaRegCheckCircle size={24} className="text-yellow-500" />
           <p className="text-xl font-medium">Selected Plan: {booking.selectedPlan || "Not available"}</p>
         </div>
 
         <div className="flex items-center space-x-3">
-          <FaRegCalendarAlt size={24} className="text-blue-500" />
+          <FaRegCalendarAlt size={24} className="text-yellow-500" />
           <p className="text-xl font-medium">Selected Day: {booking.selectedDay || "Not available"}</p>
         </div>
 
         <div className="flex items-center space-x-3">
-          <FaMoneyBillWaveAlt size={24} className="text-purple-500" />
+          <FaMoneyBillWaveAlt size={24} className="text-yellow-500" />
           <p className="text-xl font-medium">Price: ${booking.price || "N/A"}</p>
         </div>
       </div>
@@ -188,7 +187,7 @@ const MyBookedTrainer = () => {
       <div className="mt-6 flex justify-center">
         <button
           onClick={() => setModalOpen(true)}
-          className="btn btn-primary w-full md:w-1/2 py-3 rounded-lg hover:bg-blue-600 transition-all ease-in-out duration-200"
+          className="btn bg-yellow-500 text-black w-full md:w-1/2 py-3 border-none rounded-lg hover:bg-yellow-600 transition-all ease-in-out duration-200"
         >
           Leave a Review
         </button>
@@ -198,17 +197,17 @@ const MyBookedTrainer = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-xl font-bold mb-4">Leave a Review</h2>
+            <h2 className="text-xl font-bold text-yellow-500 mb-4">Leave a Review</h2>
             <textarea
               value={reviewData.feedback}
               onChange={(e) =>
                 setReviewData((prev) => ({ ...prev, feedback: e.target.value }))
               }
-              className="w-full h-24 p-2 border rounded-md mb-4"
+              className="w-full h-24 p-2 border border-yellow-500 rounded-md mb-4 text-black"
               placeholder="Write your feedback..."
             ></textarea>
             <div className="flex items-center justify-between mb-4">
-              <p className="font-medium">Rating:</p>
+              <p className="font-medium text-black">Rating:</p>
               <ReactStars
                 count={5}
                 size={40}
@@ -222,13 +221,13 @@ const MyBookedTrainer = () => {
             <div className="flex justify-end space-x-2">
               <button
                 onClick={() => setModalOpen(false)}
-                className="btn btn-secondary px-4 py-2 rounded-lg"
+                className="btn bg-gray-500 text-white px-4 py-2 rounded-lg"
               >
                 Cancel
               </button>
               <button
                 onClick={handleReviewSubmit}
-                className="btn btn-primary px-4 py-2 rounded-lg"
+                className="btn bg-yellow-500 text-black px-4 py-2 rounded-lg"
               >
                 Submit
               </button>

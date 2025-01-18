@@ -6,13 +6,12 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
-
 const skillOptions = [
-    { value: "Strength Training", label: "Strength Training" },
-    { value: "Cardio", label: "Cardio" },
-    { value: "Yoga", label: "Yoga" },
-    { value: "Pilates", label: "Pilates" },
-  ];
+  { value: "Strength Training", label: "Strength Training" },
+  { value: "Cardio", label: "Cardio" },
+  { value: "Yoga", label: "Yoga" },
+  { value: "Pilates", label: "Pilates" },
+];
 
 const dayOptions = [
   { value: "Sun", label: "Sunday" },
@@ -24,20 +23,6 @@ const dayOptions = [
   { value: "Sat", label: "Saturday" },
 ];
 
-const classOptions = [
-  { value: "Yoga", label: "Yoga" },
-  { value: "Cardio", label: "Cardio" },
-  { value: "Pilates", label: "Pilates" },
-  { value: "Strength Training", label: "Strength Training" },
-  { value: "Dance", label: "Dance" },
-  { value: "Kickboxing", label: "Kickboxing" },
-  { value: "Zumba", label: "Zumba" },
-  { value: "CrossFit", label: "CrossFit" },
-  { value: "Cycling", label: "Cycling" },
-  { value: "Swimming", label: "Swimming" },
-  { value: "Martial Arts", label: "Martial Arts" },
-];
-
 const AddNewSlot = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, setValue, reset } = useForm();
@@ -45,6 +30,7 @@ const AddNewSlot = () => {
   const axiosPublic = useAxiosPublic();
 
   const [trainerData, setTrainerData] = useState(null);
+  const [classOptions, setClassOptions] = useState([]);
 
   // Fetch trainer data when component mounts
   useEffect(() => {
@@ -60,31 +46,45 @@ const AddNewSlot = () => {
     }
   }, [user?.email]);
 
+  // Fetch class options from the server
+  useEffect(() => {
+    axiosPublic
+      .get("/class")
+      .then((response) => {
+        const options = response.data.map((cls) => ({
+          value: cls.name,
+          label: cls.name,
+        }));
+        setClassOptions(options);
+      })
+      .catch((error) => {
+        console.error("Error fetching class options:", error);
+      });
+  }, []);
+
   const onSubmit = async (data) => {
-    console.log("Form Data:", data); // Log to check values
-  
     try {
-      // Prepare slot data to be sent to the backend
       const slotData = {
-        availableDays: data.availableDays, // Send selected days
-        classes: data.classes, // Send selected classes
-        availableTime: data.availableTime, // Send available time
+        availableDays: data.availableDays,
+        classes: data.classes,
+        availableTime: data.availableTime,
       };
-  
-      // Send PATCH request
-      const response = await axiosSecure.patch(`/trainerSlotUpdate/${user.email}`, slotData);
-  
+
+      const response = await axiosSecure.patch(
+        `/trainerSlotUpdate/${user.email}`,
+        slotData
+      );
+
       if (response.data.success) {
-        // Update trainerData to reflect the updated availableTime
         setTrainerData((prevData) => ({
           ...prevData,
-          availableTime: data.availableTime, // Update the availableTime directly
+          availableTime: data.availableTime,
           availableDays: data.availableDays,
           classes: data.classes,
         }));
-  
-        reset(); // Reset form fields
-  
+
+        reset();
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -97,12 +97,11 @@ const AddNewSlot = () => {
       console.error("Error updating slot:", error);
       Swal.fire({
         icon: "error",
-        title: "Oops...You do not added anything yet",
-        text: "Add new thing to add new slot.",
+        title: "Oops...You have not added anything yet",
+        text: "Add new details to update the slot.",
       });
     }
   };
-  
 
   if (!trainerData) {
     return <p>Loading trainer data...</p>;
@@ -149,31 +148,29 @@ const AddNewSlot = () => {
             className="input input-bordered w-full bg-gray-100"
           />
         </div>
-        
-        {/* skills (Read-only) */}
-        <div className="form-control w-full my-6">
-  <label className="label">
-    <span className="label-text">Skills (Read-Only)</span>
-  </label>
-  <Select
-    isMulti
-    options={skillOptions}
-    value={trainerData.skills?.map((day) => ({
-      value: day,
-      label: skillOptions.find((opt) => opt.value === day)?.label,
-    }))}
-    onChange={() => {}}
-    isDisabled={true} // Disable the select input to make it read-only
-    className="basic-multi-select"
-    classNamePrefix="select"
-  />
-</div>
 
-
-        {/* Select Days (Previously Added Days) */}
+        {/* Skills (Read-only) */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Select Available Days (Slot Name)</span>
+            <span className="label-text">Skills (Read-Only)</span>
+          </label>
+          <Select
+            isMulti
+            options={skillOptions}
+            value={trainerData.skills?.map((skill) => ({
+              value: skill,
+              label: skillOptions.find((opt) => opt.value === skill)?.label,
+            }))}
+            isDisabled
+            className="basic-multi-select"
+            classNamePrefix="select"
+          />
+        </div>
+
+        {/* Select Available Days */}
+        <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text">Select Available Days</span>
           </label>
           <Select
             isMulti
@@ -183,27 +180,29 @@ const AddNewSlot = () => {
               label: dayOptions.find((opt) => opt.value === day)?.label,
             }))}
             onChange={(selectedOptions) => {
-              setValue("availableDays", selectedOptions ? selectedOptions.map((opt) => opt.value) : []);
+              setValue(
+                "availableDays",
+                selectedOptions ? selectedOptions.map((opt) => opt.value) : []
+              );
             }}
             className="basic-multi-select"
             classNamePrefix="select"
           />
         </div>
-        
-        {/* Available Time */}
-<div className="form-control w-full my-6">
-  <label className="label">
-    <span className="label-text">Available Time (Slot Time)</span>
-  </label>
-  <input
-    type="text"
-    defaultValue={trainerData?.availableTime}
-    {...register("availableTime", { required: true })}
-    placeholder="e.g., 9:00 AM - 5:00 PM"
-    className="input input-bordered w-full"
-  />
-</div>
 
+        {/* Available Time */}
+        <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text">Available Time</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={trainerData.availableTime || ""}
+            {...register("availableTime", { required: true })}
+            placeholder="e.g., 9:00 AM - 5:00 PM"
+            className="input input-bordered w-full"
+          />
+        </div>
 
         {/* Select Classes */}
         <div className="form-control w-full my-6">
@@ -211,18 +210,22 @@ const AddNewSlot = () => {
             <span className="label-text">Classes*</span>
           </label>
           <Select
-            isMulti
-            options={classOptions}
-            defaultValue={trainerData.classes?.map((className) => ({
-              value: className,
-              label: classOptions.find((opt) => opt.value === className)?.label,
-            }))}
-            onChange={(selectedOptions) => {
-              setValue("classes", selectedOptions ? selectedOptions.map((opt) => opt.value) : []);
-            }}
-            className="basic-multi-select"
-            classNamePrefix="select"
-          />
+  isMulti
+  options={classOptions} // Dynamically fetched options
+  defaultValue={trainerData.classes?.map((className) => ({
+    value: className,
+    label: className, // Use the className directly as the label
+  }))}
+  onChange={(selectedOptions) => {
+    setValue(
+      "classes",
+      selectedOptions ? selectedOptions.map((opt) => opt.value) : []
+    );
+  }}
+  className="basic-multi-select"
+  classNamePrefix="select"
+/>
+
         </div>
 
         <button type="submit" className="btn">

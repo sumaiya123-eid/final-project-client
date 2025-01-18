@@ -65,9 +65,10 @@ const AllClassesPage = () => {
                 alt={classItem.name}
                 className="w-full h-48 object-fit rounded-t-lg"
               />
-              <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full shadow">
-                {classItem.category}
-              </div>
+             <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full shadow">
+  Trainers: {classItem.trainers.length}
+</div>
+
             </div>
             <h2 className="text-xl font-semibold mt-4 flex items-center">
               <FaInfoCircle className="text-blue-500 mr-2" /> {classItem.name}

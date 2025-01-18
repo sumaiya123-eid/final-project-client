@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import Swal from "sweetalert2";
@@ -25,25 +25,31 @@ const dayOptions = [
   { value: "Sat", label: "Saturday" },
 ];
 
-const classOptions = [
-  { value: "Yoga", label: "Yoga" },
-  { value: "Cardio", label: "Cardio" },
-  { value: "Pilates", label: "Pilates" },
-  { value: "Strength Training", label: "Strength Training" },
-  { value: "Dance", label: "Dance" },
-  { value: "Kickboxing", label: "Kickboxing" },
-  { value: "Zumba", label: "Zumba" },
-  { value: "CrossFit", label: "CrossFit" },
-  { value: "Cycling", label: "Cycling" },
-  { value: "Swimming", label: "Swimming" },
-  { value: "Martial Arts", label: "Martial Arts" },
-];
-
-
 const BeATrainer = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset, setValue } = useForm();
   const axiosPublic = useAxiosPublic();
+
+  const [classOptions, setClassOptions] = useState([]);
+
+  useEffect(() => {
+    // Fetch available classes from the server
+    const fetchClasses = async () => {
+      try {
+        const res = await axiosPublic.get("/class");
+        if (res.data) {
+          const options = res.data.map((cls) => ({
+            value: cls.name,
+            label: cls.name,
+          }));
+          setClassOptions(options);
+        }
+      } catch (error) {
+        console.error("Error fetching class options:", error);
+      }
+    };
+    fetchClasses();
+  }, [axiosPublic]);
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.profileImage[0] };
@@ -103,16 +109,16 @@ const BeATrainer = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="form-control w-full my-6">
-  <label className="label">
-    <span className="label-text">Full Name*</span>
-  </label>
-  <input
-    type="text"
-    value={user?.displayName || ""} // Set the value from the user context
-    readOnly
-    className="input input-bordered w-full bg-gray-100"
-  />
-</div>
+          <label className="label">
+            <span className="label-text">Full Name*</span>
+          </label>
+          <input
+            type="text"
+            value={user?.displayName || ""} // Set the value from the user context
+            readOnly
+            className="input input-bordered w-full bg-gray-100"
+          />
+        </div>
 
         {/* Email (Read-only) */}
         <div className="form-control w-full my-6">

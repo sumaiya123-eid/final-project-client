@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import { AuthContext } from "../provider/AuthProvider";
 import { FaCartShopping } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useTrainer from "../hooks/useTrainer";
 import useUser from "../hooks/useDbUser";
+import { FaDumbbell } from "react-icons/fa";
 
 
 export default function Navbar() {
@@ -15,7 +16,7 @@ export default function Navbar() {
   const [isAdmin] = useAdmin();
   const [isTrainer] = useTrainer();
   return (
-    <div className="navbar bg-black *:text-white">
+    <div className="navbar bg-yellow-500 *:text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,46 +37,85 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/menu">Our Menu</Link>
+              <Link to="/allTrainers">All Trainer</Link>
             </li>
             <li>
-              <Link to="/shop/salad">Our Shop</Link>
+              <Link to="/allClasses">All Classes</Link>
             </li>
             <li>
               <Link to="/contact">Contact Us</Link>
             </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
-        </div>
-        <a className="btn btn-ghost text-xl">Bistro Boss</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal flex items-center px-1">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/allTrainers">All Trainer</Link>
-          </li>
-          <li>
-            <Link to="/allClasses">All Classes</Link>
-          </li>
-          {
-            user && isAdmin && <li><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
+            {
+            user && isAdmin && <li className="text-white "><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
         }
+
           {
-            user && isTrainer && <li><Link to="/dashboard/addForum">Dashboard</Link></li>
+            user && isTrainer && <li className="text-white "><Link to="/dashboard/addForum">Dashboard</Link></li>
         }
         {
-            user && !isAdmin && !isTrainer && <li><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
+            user && !isAdmin && !isTrainer && <li className="text-white"><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
+        }
+          </ul>
+        </div>
+        <a className="btn btn-ghost text-xl transition-transform transform hover:scale-110"><FaDumbbell className="text-black text-5xl" /><p className="font-bold text-2xl">Fit<span className="text-black"> Trick</span></p></a>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal flex gap-5 items-center px-1">
+        <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            Home
+          </NavLink>
+        <NavLink
+            to="/allTrainers"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            All Trainer
+          </NavLink>
+        <NavLink
+            to="/allClasses"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            All Classes
+          </NavLink>
+        <NavLink
+            to="/allForum"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            All Forum
+          </NavLink>
+          {
+            user && isAdmin && <li className="text-black font-bold"><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
+        }
+
+          {
+            user && isTrainer && <li className="text-black font-bold"><Link to="/dashboard/addForum">Dashboard</Link></li>
+        }
+        {
+            user && !isAdmin && !isTrainer && <li className="text-black font-bold"><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
         }
         </ul>
       </div>

@@ -103,13 +103,13 @@ const AddClassPage = () => {
   };
 
   return (
-    <div className="container my-10">
-      <h1 className="text-2xl font-semibold mb-6">Add New Class</h1>
+    <div className="container my-5 w-10/12 mx-auto p-6 border border-yellow-500 ">
+      <h1 className="text-3xl text-yellow-500 font-semibold mb-6">Add New Class</h1>
 
       <form onSubmit={handleSubmit}>
         {/* Class Name */}
         <div className="form-control mb-6">
-          <label className="label">Class Name*</label>
+          <label className="label text-white">Class Name*</label>
           <input
             type="text"
             name="name"
@@ -122,7 +122,7 @@ const AddClassPage = () => {
 
         {/* Class Image */}
         <div className="form-control mb-6">
-          <label className="label">Class Image*</label>
+          <label className="label text-white">Class Image*</label>
           <input
             type="file"
             accept="image/*"
@@ -133,8 +133,8 @@ const AddClassPage = () => {
         </div>
 
         {/* Description */}
-        <div className="form-control mb-6">
-          <label className="label">Class Description*</label>
+        <div className="form-control mb-6 ">
+          <label className="label text-white">Class Description*</label>
           <textarea
             name="description"
             value={formData.description}
@@ -146,8 +146,8 @@ const AddClassPage = () => {
         </div>
 
         {/* Additional Info */}
-        <div className="form-control mb-6">
-          <label className="label">Additional Info</label>
+        <div className="form-control mb-6 ">
+          <label className="label text-white">Additional Info</label>
           <textarea
             name="additionalInfo"
             value={formData.additionalInfo}
@@ -158,7 +158,7 @@ const AddClassPage = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn" disabled={isLoading}>
+        <button type="submit" className="btn bg-yellow-500 font-bold border-none text-black" disabled={isLoading}>
           {isLoading ? "Adding..." : "Add Class"}
         </button>
       </form>

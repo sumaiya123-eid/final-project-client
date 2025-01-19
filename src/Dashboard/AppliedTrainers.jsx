@@ -23,11 +23,11 @@ const AppliedTrainers = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
-      <h2 className="text-2xl font-bold mb-6">Applied Trainers</h2>
+      <h2 className="text-2xl text-yellow-500 font-bold mb-6">Applied Trainers</h2>
       {appliedTrainers.length > 0 ? (
-        <table className="table-auto w-full border-collapse border border-gray-200">
+        <table className="table-auto w-full bg-y border-collapse border border-gray-200">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-yellow-500">
               <th className="border border-gray-200 px-4 py-2">Name</th>
               <th className="border border-gray-200 px-4 py-2">Email</th>
               <th className="border border-gray-200 px-4 py-2">Actions</th>
@@ -36,12 +36,12 @@ const AppliedTrainers = () => {
           <tbody>
             {appliedTrainers.map((trainer) => (
               <tr key={trainer.email}>
-                <td className="border border-gray-200 px-4 py-2">{trainer.fullName}</td>
-                <td className="border border-gray-200 px-4 py-2">{trainer.email}</td>
-                <td className="border border-gray-200 px-4 py-2">
+                <td className="border border-gray-200 px-4 py-2 text-white">{trainer.fullName}</td>
+                <td className="border border-gray-200 px-4 py-2 text-white">{trainer.email}</td>
+                <td className="border border-gray-200 px-4 py-2 text-white flex justify-center">
                   <button
                     onClick={() => navigate(`/dashboard/appliedTrainerDetail/${trainer.email}`)}
-                    className="btn btn-primary"
+                    className="btn bg-white text-black"
                   >
                     Details
                   </button>

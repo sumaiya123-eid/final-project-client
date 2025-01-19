@@ -79,10 +79,10 @@ const AddForum = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-8">Create a Forum Post</h1>
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white p-6 shadow-md rounded-lg">
+      <h1 className="text-3xl font-bold text-center mb-8 text-yellow-500">Create a Forum Post</h1>
+      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-black border border-yellow-500 p-6 shadow-md rounded-lg">
         <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-600">Title</label>
+          <label className="block text-base font-semibold text-white">Title</label>
           <input
             type="text"
             name="title"
@@ -93,7 +93,7 @@ const AddForum = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-600">Content</label>
+          <label className="block text-base font-semibold text-white">Content</label>
           <textarea
             name="content"
             value={forumData.content}
@@ -105,7 +105,7 @@ const AddForum = () => {
         </div>
         <button
           type="submit"
-          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
+          className="w-full px-6 py-3 bg-yellow-500 hover:bg-blue-600 text-black font-bold rounded-md"
         >
           Post Forum
         </button>

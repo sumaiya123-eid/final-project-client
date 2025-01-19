@@ -185,22 +185,22 @@ const ForumPage = () => {
 
       {/* Pagination */}
       <div className="pagination mt-8 flex justify-center items-center space-x-2">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="btn btn-sm btn-outline flex items-center"
-        >
-          <FaChevronLeft className="mr-1" /> Previous
-        </button>
-        {renderPageNumbers()}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === data.totalPages}
-          className="btn btn-sm btn-outline flex items-center"
-        >
-          Next <FaChevronRight className="ml-1" />
-        </button>
-      </div>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="btn btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
+          >
+            <FaChevronLeft className="mr-1" /> Previous
+          </button>
+          {renderPageNumbers()}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === data.totalPages}
+            className="btn btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
+          >
+            Next <FaChevronRight className="ml-1" />
+          </button>
+        </div>
     </div>
   );
 };

@@ -94,19 +94,21 @@ const AppliedTrainerDetails = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
-      <h2 className="text-2xl font-bold mb-6">Trainer Details</h2>
-      <div className="mb-6">
+      <h2 className="text-4xl text-yellow-500 font-bold mb-6">Trainer Details</h2>
+      <div className="mb-6 *:text-white *:text-2xl">
         <p><strong>Name:</strong> {trainer.fullName}</p>
         <p><strong>Email:</strong> {trainer.email}</p>
-        <p><strong>Phone:</strong> {trainer.phone || "Not provided"}</p>
-        <p><strong>Address:</strong> {trainer.address || "Not provided"}</p>
+        <p><strong>Age:</strong> {trainer.age || "Not provided"}</p>
+        <p><strong>Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
         <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
         <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
+        <p><strong>Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
+        <p><strong>Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>
       </div>
 
       <div className="flex space-x-4">
         <button
-          className="btn btn-success"
+          className="btn btn-success font-bold"
           onClick={() => {
             Swal.fire({
               title: "Are you sure?",
@@ -127,7 +129,7 @@ const AppliedTrainerDetails = () => {
         </button>
 
         <button
-          className="btn btn-danger"
+          className="btn bg-red-600 font-bold border-none text-black"
           onClick={() => setIsRejectModalOpen(true)}
         >
           Reject
@@ -142,10 +144,12 @@ const AppliedTrainerDetails = () => {
               <h2 className="text-xl font-bold">Reject Trainer</h2>
               <p><strong>Name:</strong> {trainer.fullName}</p>
               <p><strong>Email:</strong> {trainer.email}</p>
-              <p><strong>Phone:</strong> {trainer.phone || "Not provided"}</p>
-              <p><strong>Address:</strong> {trainer.address || "Not provided"}</p>
+              <p><strong>Age:</strong> {trainer.age || "Not provided"}</p>
+        <p><strong>Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
               <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
               <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
+              <p><strong>Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
+              <p><strong>Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>
               <textarea
                 className="textarea textarea-bordered w-full mt-4"
                 placeholder="Provide feedback for rejection..."

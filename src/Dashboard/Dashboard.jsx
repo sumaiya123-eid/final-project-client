@@ -28,7 +28,7 @@ export default function Dashboard() {
           {isAdmin && (
             <>
               <li>
-                <NavLink to="/dashboard/adminHome">
+                <NavLink to="/dashboard/subscribers">
                   <FaHome />
                   All Newsletter Subscribers
                 </NavLink>

@@ -28,6 +28,8 @@ import MyBookedTrainer from "../Dashboard/MyBookedTrainer";
 import ForumPage from "../Pages/ForumPage";
 import AdminOrTrainerRoute from "./AdminOrTrainerRoute";
 import ForumDetails from "../Pages/ForumDetails";
+import NewsletterSubscription from "../Pages/NewsletterSubscription";
+import SubscribersList from "../Dashboard/SubscribersList";
 
 
  export const router = createBrowserRouter([
@@ -87,6 +89,10 @@ import ForumDetails from "../Pages/ForumDetails";
       children:[
         
         // admin only routes
+        {
+          path:"/dashboard/subscribers",
+          element:<PrivateRoute><AdminRoute><SubscribersList></SubscribersList></AdminRoute></PrivateRoute>
+        },
         {
           path:"/dashboard/appliedTrainers",
           element:<PrivateRoute><AdminRoute><AppliedTrainers></AppliedTrainers></AdminRoute></PrivateRoute>

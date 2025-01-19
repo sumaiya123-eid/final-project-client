@@ -107,11 +107,11 @@ const ForumPage = () => {
     let icon = null;
 
     if (role === "trainer") {
-      badgeClass = "bg-green-400 text-white text-xs"; // Adjusted size
+      badgeClass = "bg-green-600 text-white text-xs"; // Adjusted size
       badgeText = "Trainer";
       icon = <FaUserTie className="mr-1 text-gray-300" />; // Silver icon
     } else if (role === "admin") {
-      badgeClass = "bg-red-400 text-white text-xs"; // Adjusted size
+      badgeClass = "bg-red-600 text-white text-xs"; // Adjusted size
       badgeText = "Admin";
       icon = <FaUserShield className="mr-1 text-yellow-300" />; // Yellow icon
     } else {
@@ -127,20 +127,20 @@ const ForumPage = () => {
   };
 
   return (
-    <div className="container mx-auto my-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Forum</h1>
+    <div className="container bg-black mx-auto my-10 px-4 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-8 text-yellow-500">Forum</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data.posts.map((post) => (
           <div
             key={post._id}
-            className="post-card bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 p-5 flex flex-col h-full"
+            className="post-card bg-yellow-500 *:text-black rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 p-5 flex flex-col h-full"
           >
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">{post.email}</div> {/* Author email */}
               {renderRoleBadge(post.role)}
             </div>
             <h2 className="text-xl font-semibold mt-3 flex items-center">
-              <FaInfoCircle className="text-blue-500 mr-2" /> {post.title}
+              <FaInfoCircle className="text-black mr-2" /> {post.title}
             </h2>
             <p className="text-gray-600 text-sm mt-2 mb-4 break-words flex-grow">
               <strong>Content: </strong> {post.content}
@@ -165,18 +165,18 @@ const ForumPage = () => {
                   e.stopPropagation();
                   handleVote(post._id, "upvote");
                 }}
-                className={`btn btn-sm flex items-center ${userVotes[post._id] === "upvote" ? "btn-success" : "btn-outline-success"}`}
+                className={`btn btn-sm bg-black flex border-none text-white items-center ${userVotes[post._id] === "upvote" ? "btn-success" : "btn-outline-success"}`}
               >
-                <FaArrowUp className="mr-1" /> {post.votesSummary?.upvotes || 0}
+                <FaArrowUp className="mr-1 text-white" /> {post.votesSummary?.upvotes || 0}
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleVote(post._id, "downvote");
                 }}
-                className={`btn btn-sm flex items-center ${userVotes[post._id] === "downvote" ? "btn-danger" : "btn-outline-danger"}`}
+                className={`btn btn-sm text-white border-none bg-black flex items-center ${userVotes[post._id] === "downvote" ? "btn-danger" : "btn-outline-danger"}`}
               >
-                <FaArrowDown className="mr-1" /> {post.votesSummary?.downvotes || 0}
+                <FaArrowDown className="mr-1 text-white" /> {post.votesSummary?.downvotes || 0}
               </button>
             </div>
           </div>

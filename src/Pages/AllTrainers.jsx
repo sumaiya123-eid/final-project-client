@@ -119,6 +119,19 @@ const AllTrainers = () => {
                   <FaToolbox className="text-orange-500" /> <p className="text-yellow-500 font-bold">Experience :</p>{" "}
                   {trainer.experience || "Not specified"}
                 </p>
+
+                 {/* Available days */}
+                 <div className="mb-4">
+                  <h3 className="text-base font-semibold flex items-center gap-2 text-yellow-500">
+                    <FaStar className="text-yellow-500" /> <p className="text-yellow-500 font-bold">Available Days :</p>
+                  </h3>
+                  <p className="text-yellow-500 text-base">
+                    {trainer.availableDays.length > 0
+                      ? trainer.availableDays.slice(0, 3).join(", ") +
+                        (trainer.availableDays.length > 3 ? ", + more" : "")
+                      : "No day available."}
+                  </p>
+                </div>
             
                 {/* Skills */}
                 <div className="mb-4">

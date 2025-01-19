@@ -43,13 +43,13 @@ const TrainerDetails = () => {
   const availableDays = parseData(trainer.availableDays);
 
   return (
-    <section className="bg-gradient-to-r from-blue-500 via-green-400 to-blue-500  py-10">
+    <section className="bg-black  py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Trainer Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="card shadow-xl bg-white p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+          <div className="card shadow-xl bg-yellow-500 p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <div className="relative">
-              <div className="rounded-full p-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 w-48 h-48 mx-auto">
+              <div className="rounded-full p-1 bg-black w-48 h-48 mx-auto">
                 <img
                   src={trainer.profileImage || "/default-avatar.jpg"}
                   alt={trainer.fullName}
@@ -57,7 +57,7 @@ const TrainerDetails = () => {
                 />
               </div>
             </div>
-            <div className="mt-4 space-y-2 text-center">
+            <div className="mt-4 space-y-2 *:text-black font-semibold text-center">
               <h2 className="text-2xl font-semibold flex items-center gap-2 justify-center text-gray-800">
                 <FaUserAlt className="text-blue-500" /> {trainer.fullName}
               </h2>
@@ -74,15 +74,15 @@ const TrainerDetails = () => {
                 <FaToolbox className="text-orange-500" /> Experience : {trainer.experience || "Not specified"}
               </p>
               <div className="mb-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-gray-700 mb-2">
-                  <FaStar className="text-yellow-500" /> Skills :
+                <h3 className="text-lg font-semibold flex items-center gap-2 text-black mb-2">
+                  <FaStar className="text-black" /> Skills :
                 </h3>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {skills.length > 0 ? (
                     skills.map((skill, index) => (
                       <button
                         key={index}
-                        className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md px-4 py-1 transition-transform duration-200 hover:scale-105"
+                        className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-black border-black rounded-md shadow-md px-4 py-1 transition-transform duration-200 hover:scale-105"
                       >
                         {skill}
                       </button>
@@ -94,7 +94,7 @@ const TrainerDetails = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-gray-700 mb-2">
+                <h3 className="text-lg font-semibold flex items-center gap-2 text-black mb-2">
                   <FaListAlt className="text-green-500" /> Classes :
                 </h3>
                 <div className="flex flex-wrap gap-2 justify-center">
@@ -102,7 +102,7 @@ const TrainerDetails = () => {
                     trainer.classes.map((classItem, index) => (
                       <button
                         key={index}
-                        className="btn btn-sm bg-green-500 hover:bg-green-600 text-white rounded-md shadow-md px-4 py-1 transition-transform duration-200 hover:scale-105"
+                        className="btn btn-sm bg-green-500 hover:bg-green-600 text-black border-black rounded-md shadow-md px-4 py-1 transition-transform duration-200 hover:scale-105"
                       >
                         {classItem}
                       </button>
@@ -116,19 +116,19 @@ const TrainerDetails = () => {
           </div>
 
            {/* Available Slots */}
-           <div className="card bg-white shadow-xl p-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+           <div className="card bg-yellow-500 shadow-xl p-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Available Slots</h3>
             {availableDays.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {availableDays.map((day, index) => (
                   <div
                     key={index}
-                    className="relative group p-6 rounded-lg border border-gray-200 shadow-md bg-gradient-to-r from-indigo-100 to-purple-100 hover:from-purple-200 hover:to-pink-200 transform transition-transform duration-300 hover:scale-105"
+                    className="relative group p-6 rounded-lg border border-black shadow-md bg-gradient-to-r from-indigo-100 to-purple-100 hover:from-purple-200 hover:to-pink-200 transform transition-transform duration-300 hover:scale-105"
                     onClick={() => navigate(`/trainer-booked/${trainer.email}?day=${day}`)} // Navigate when card is clicked
                   >
                     <h4 className="text-lg font-bold text-gray-700">{day}</h4>
                     <button
-                      className="absolute top-2 right-2 bg-green-500 text-white px-4 py-2 rounded-md text-sm transform transition-all duration-300 hover:scale-110"
+                      className="absolute top-2 right-2 bg-green-500 text-black font-bold px-4 py-2 rounded-md text-sm transform transition-all duration-300 hover:scale-110"
                       onClick={(e) => {
                         e.stopPropagation(); // Prevent bubbling to the card's onClick handler
                         navigate(`/trainer-booked/${trainer.email}?day=${day}`);
@@ -162,7 +162,7 @@ const TrainerDetails = () => {
               Join our community of trainers and help people achieve their fitness goals!
             </p>
             <button
-              className="btn btn-primary text-white px-6 py-3 rounded-full transform transition-all duration-300 hover:scale-105 animate__animated animate__fadeInUp animate__delay-2s"
+              className="btn bg-yellow-500 border-2 border-black text-black font-bold px-6 py-3 rounded-full transform transition-all duration-300 hover:scale-105 animate__animated animate__fadeInUp animate__delay-2s"
               onClick={() => navigate("/become-trainer")}
             >
               <FaRegUser className="mr-2" />

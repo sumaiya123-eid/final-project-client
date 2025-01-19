@@ -6,6 +6,7 @@ import ForumPage from "./ForumPage";
 import ForumPosts from "./ForumPosts";
 import NewsletterSubscription from "./NewsletterSubscription";
 import Testimonials from "./Testimonials";
+import TrainerSection from "./TrainerSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Testimonials></Testimonials>
         <ForumPosts></ForumPosts>
         <NewsletterSubscription></NewsletterSubscription>
+        <TrainerSection></TrainerSection>
         <Footer></Footer>
     </div>
   )

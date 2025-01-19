@@ -36,8 +36,8 @@ const Testimonials = () => {
   }
 
   return (
-    <div className="w-10/12 mx-auto mt-12 p-10 bg-yellow-400 animate__animated animate__fadeInUp rounded-lg shadow-lg">
-      <h2 className="text-3xl font-semibold text-gray-800 my-4 text-center">Customer Testimonials</h2>
+    <div className="w-10/12 mx-auto mt-12 p-10 bg-black animate__animated animate__fadeInUp rounded-lg shadow-lg">
+      <h2 className="text-3xl font-semibold text-yellow-500 my-4 text-center">Customer Testimonials</h2>
 
       {/* Swipe Right to See More Reviews */}
       <div className="flex justify-center items-center mb-6">
@@ -63,7 +63,7 @@ const Testimonials = () => {
       >
         {data.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="border-2 border-yellow-600 rounded-lg p-6 shadow-xl bg-yellow-200 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+            <div className="border-2 *:text-yellow-500 border-yellow-600 rounded-lg p-6 shadow-xl bg-black transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
               <div className="flex items-center mb-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
                   <p className="text-xl font-semibold text-white">
@@ -71,7 +71,7 @@ const Testimonials = () => {
                   </p>
                 </div>
                 <div className="ml-3">
-                  <p className="font-semibold text-black">{review.userId}</p>
+                  <p className="font-semibold text-white">{review.userId}</p>
                 </div>
               </div>
               <div className="mb-3">

@@ -63,16 +63,18 @@ const ForumPosts = () => {
   };
 
   return (
-    <div className="forum-posts my-20 w-11/12 rounded-md mx-auto p-8 bg-yellow-400">
-      <h2 className="text-3xl text-center mt-10 mb-12 text-black font-semibold">Latest Forum Posts</h2>
+    <div className="forum-posts my-20 w-10/12 rounded-md mx-auto p-8 bg-yellow-400">
+      <h2 className="text-3xl text-center mt-5 mb-12 text-black font-semibold">Latest Forum Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {forum.slice(0, 6).map((post, index) => (
           <div
             key={index}
             className="card bg-yellow-200 border-2 border-yellow-600 rounded-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 p-5 flex flex-col h-full"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div className="text-sm font-semibold text-gray-800">Author : {post.email}</div>
+            <div className="md:flex items-center justify-between mb-4">
+              <div className="text-sm font-semibold text-gray-800 overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
+                Author : {post.email}
+              </div>
               {renderRoleBadge(post.role)}
             </div>
             <h2 className="text-xl flex items-center font-bold mb-3">

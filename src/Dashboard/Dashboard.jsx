@@ -46,7 +46,7 @@ export default function Dashboard() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookings">
+                <NavLink to="/dashboard/balance">
                   <FaBookAtlas />
                   Balance
                 </NavLink>

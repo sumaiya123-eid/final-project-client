@@ -30,6 +30,7 @@ import AdminOrTrainerRoute from "./AdminOrTrainerRoute";
 import ForumDetails from "../Pages/ForumDetails";
 import NewsletterSubscription from "../Pages/NewsletterSubscription";
 import SubscribersList from "../Dashboard/SubscribersList";
+import Balance from "../Dashboard/Balance";
 
 
  export const router = createBrowserRouter([
@@ -100,6 +101,10 @@ import SubscribersList from "../Dashboard/SubscribersList";
         {
           path:"/dashboard/appliedTrainerDetail/:email",
           element:<PrivateRoute><AdminRoute><AppliedTrainerDetails></AppliedTrainerDetails></AdminRoute></PrivateRoute>
+        },
+        {
+          path:"/dashboard/balance",
+          element:<PrivateRoute><AdminRoute><Balance></Balance></AdminRoute></PrivateRoute>
         },
         {
           path:"/dashboard/addClass",

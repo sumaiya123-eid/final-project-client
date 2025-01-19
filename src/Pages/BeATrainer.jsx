@@ -105,12 +105,12 @@ const BeATrainer = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto my-10">
+    <div className="w-10/12 mx-auto mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
-        <div className="form-control w-full my-6">
+        <div className="form-control w-full my-6 ">
           <label className="label">
-            <span className="label-text">Full Name*</span>
+            <span className="label-text text-white">Full Name*</span>
           </label>
           <input
             type="text"
@@ -123,7 +123,7 @@ const BeATrainer = () => {
         {/* Email (Read-only) */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Email (Read-Only)</span>
+            <span className="label-text text-white">Email (Read-Only)</span>
           </label>
           <input
             type="email"
@@ -136,7 +136,7 @@ const BeATrainer = () => {
         {/* Age */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Age*</span>
+            <span className="label-text text-white">Age*</span>
           </label>
           <input
             type="number"
@@ -149,7 +149,7 @@ const BeATrainer = () => {
         {/* Skills */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Skills*</span>
+            <span className="label-text text-white">Skills*</span>
           </label>
           <Select
             isMulti
@@ -168,7 +168,7 @@ const BeATrainer = () => {
         {/* Available Days */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Available Days*</span>
+            <span className="label-text text-white">Available Days*</span>
           </label>
           <Select
             isMulti
@@ -187,7 +187,7 @@ const BeATrainer = () => {
         {/* Available Time */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Available Time*</span>
+            <span className="label-text text-white">Available Time*</span>
           </label>
           <input
             type="text"
@@ -200,7 +200,7 @@ const BeATrainer = () => {
         {/* Profile Image */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Profile Image*</span>
+            <span className="label-text text-white">Profile Image*</span>
           </label>
           <input
             {...register("profileImage", { required: true })}
@@ -212,7 +212,7 @@ const BeATrainer = () => {
         {/* Classes */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Classes*</span>
+            <span className="label-text text-white">Classes*</span>
           </label>
           <Select
             isMulti
@@ -231,7 +231,7 @@ const BeATrainer = () => {
         {/* Experience */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Experience*</span>
+            <span className="label-text text-white">Experience*</span>
           </label>
           <textarea
             {...register("experience", { required: true })}
@@ -240,7 +240,7 @@ const BeATrainer = () => {
           />
         </div>
 
-        <button type="submit" className="btn">
+        <button type="submit" className="btn bg-yellow-500 font-bold text-black border-none mb-6">
           Apply
         </button>
       </form>

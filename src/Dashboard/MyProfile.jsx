@@ -104,7 +104,7 @@ export default function MyProfile() {
 
   return (
     <div className="min-h-screen bg-black flex justify-center items-center p-6 ">
-      <div className="w-full max-w-sm bg-black border-4 border-yellow-400 rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
+      <div className="w-full max-w-sm bg-black border-2 border-yellow-400 rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
         <div className="flex justify-center mb-4">
           {/* Profile Image Section */}
           <div className="relative ">

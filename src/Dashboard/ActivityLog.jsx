@@ -128,7 +128,7 @@ const ActivityLog = () => {
 
         {/* Modal for Rejection Feedback */}
         {modalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="fixed inset-0 bg-yellow-200 bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-black rounded-lg p-6 w-96">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                 {selectedTrainer

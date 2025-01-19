@@ -109,11 +109,12 @@ const AddNewSlot = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
+      <h2 className="text-3xl text-yellow-500 font-bold">Add New Slot</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Full Name*</span>
+            <span className="label-text text-white">Full Name*</span>
           </label>
           <input
             type="text"
@@ -126,7 +127,7 @@ const AddNewSlot = () => {
         {/* Email (Read-only) */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Email (Read-Only)</span>
+            <span className="label-text text-white">Email (Read-Only)</span>
           </label>
           <input
             type="email"
@@ -139,7 +140,7 @@ const AddNewSlot = () => {
         {/* Age (Read-only) */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Age (Read-Only)</span>
+            <span className="label-text text-white">Age (Read-Only)</span>
           </label>
           <input
             type="number"
@@ -152,7 +153,7 @@ const AddNewSlot = () => {
         {/* Skills (Read-only) */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Skills (Read-Only)</span>
+            <span className="label-text text-white">Skills (Read-Only)</span>
           </label>
           <Select
             isMulti
@@ -170,7 +171,7 @@ const AddNewSlot = () => {
         {/* Select Available Days */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Select Available Days</span>
+            <span className="label-text text-white">Select Available Days</span>
           </label>
           <Select
             isMulti
@@ -193,7 +194,7 @@ const AddNewSlot = () => {
         {/* Available Time */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Available Time</span>
+            <span className="label-text text-white">Available Time</span>
           </label>
           <input
             type="text"
@@ -207,7 +208,7 @@ const AddNewSlot = () => {
         {/* Select Classes */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text">Classes*</span>
+            <span className="label-text text-white">Classes*</span>
           </label>
           <Select
   isMulti
@@ -228,7 +229,7 @@ const AddNewSlot = () => {
 
         </div>
 
-        <button type="submit" className="btn">
+        <button type="submit" className="btn bg-yellow-500 border-none text-black font-bold">
           Add Slot
         </button>
       </form>

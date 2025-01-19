@@ -55,17 +55,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#B95CF4] to-[#D397F8] p-2 flex items-center justify-center">
+    <div className="min-h-screen p-2 flex items-center justify-center">
       <Toaster />
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-4xl text-center text-[#A020F0] font-bold mb-8">
-          Login to Visa Navigator
+      <div className="bg-black border border-yellow-500 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-4xl text-center text-yellow-500 font-bold mb-8">
+          Login
         </h1>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-base font-medium text-white"
             >
               Email
             </label>
@@ -81,7 +81,7 @@ export default function Login() {
           <div className="mb-4">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-base font-medium text-white"
             >
               Password
             </label>
@@ -97,15 +97,15 @@ export default function Login() {
           <div className="flex justify-between items-center mb-6">
             <Link
               to="/forgetPassword"
-              className="text-sm text-[#A020F0] font-semibold hover:text-indigo-500"
+              className="text-sm text-yellow-500 font-semibold hover:text-indigo-500"
             >
               Forgot password?
             </Link>
-            <p className="text-sm text-[#A020F0] font-semibold">
+            <p className="text-sm text-yellow-500 font-semibold">
               New here?{" "}
               <Link
                 to="/register"
-                className="text-[#A020F0] font-semibold underline hover:text-indigo-500"
+                className="text-yellow-500 font-semibold underline hover:text-indigo-500"
               >
                 Register
               </Link>
@@ -113,14 +113,14 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="btn bg-gradient-to-r from-[#7D0DC3] to-[#D397F8] text-base w-full py-2 mb-4"
+            className="btn bg-yellow-500 border-none font-bold text-black text-base w-full py-2 mb-4"
           >
             Login
           </button>
           <button
             type="button"
             onClick={handleGoogle}
-            className="btn btn-outline w-full py-2 flex items-center justify-center"
+            className="btn btn-outline bg-white font-bold w-full py-2 flex items-center justify-center"
           >
             <FaGoogle className="mr-2" /> Sign in with Google
           </button>

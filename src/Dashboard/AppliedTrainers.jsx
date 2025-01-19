@@ -51,7 +51,7 @@ const AppliedTrainers = () => {
           </tbody>
         </table>
       ) : (
-        <p>No trainer applications available.</p>
+        <p className="text-white">No trainer applications available.</p>
       )}
     </div>
   );

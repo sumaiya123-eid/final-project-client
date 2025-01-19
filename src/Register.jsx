@@ -54,25 +54,25 @@ export default function Register() {
 
 
   return (
-    <div className="min-h-screen p-2 bg-gradient-to-r from-[#B95CF4] to-[#D397F8] flex items-center justify-center">
+    <div className="min-h-screen p-2 flex items-center justify-center">
       <Toaster />
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-4xl text-center text-[#A020F0]  font-bold mb-8">Register for Visa Navigator</h1>
+      <div className="bg-black border border-yellow-500 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-4xl text-center text-yellow-500  font-bold mb-8">Register</h1>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+            <label htmlFor="name" className="block text-base font-medium text-white">Name</label>
             <input type="text" name="name" id="name" placeholder="Enter your name" className="input input-bordered w-full mt-1" required />
           </div>
           <div className="mb-4">
-            <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Photo URL</label>
+            <label htmlFor="photo" className="block text-base font-medium text-white">Photo URL</label>
             <input type="text" name="photo" id="photo" placeholder="Enter your photo URL" className="input input-bordered w-full mt-1" required />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-base font-medium text-white">Email</label>
             <input type="email" name="email" id="email" placeholder="Enter your email" className="input input-bordered w-full mt-1" required />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block text-base font-medium text-white">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter your password" className="input input-bordered w-full mt-1" required />
             {error && (
               <p className="flex gap-1 text-red-500 font-semibold mt-2">
@@ -82,9 +82,9 @@ export default function Register() {
             )}
           </div>
           <div className="flex justify-between items-center mb-6">
-            <p className="text-sm text-[#A020F0] font-semibold">Already have an account? <Link to="/login" className="text-[#A020F0] font-semibold underline hover:text-indigo-500">Login</Link></p>
+            <p className="text-sm text-yellow-500 font-semibold">Already have an account? <Link to="/login" className="text-yellow-500 font-semibold underline hover:text-indigo-500">Login</Link></p>
           </div>
-          <button type="submit" className="btn bg-gradient-to-r from-[#7D0DC3] to-[#D397F8] text-base w-full py-2 mb-4">Register</button>
+          <button type="submit" className="btn bg-yellow-500 text-black font-bold border-none text-base w-full py-2 mb-4">Register</button>
         </form>
       </div>
     </div>

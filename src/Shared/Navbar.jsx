@@ -120,30 +120,45 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        {user ? (
-          <div className="flex items-center gap-4 relative group">
-            <img
-              className="w-10 rounded-full group-hover:ring-4 group-hover:ring-[#7D0DC3] transition-all"
-              src={currentUser?.photo || user?.photoURL}
-              alt="User"
-            />
-            <button
-              onClick={userLogOut}
-              className="px-4 py-3 bg-[#7D0DC3] text-white text-sm rounded-md"
-            >
-              Log Out
-            </button>
-            <div className="hidden md:flex absolute top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white w-28 px-3 py-3 rounded-md text-base z-10">
-              <p className="text-center">{currentUser?.name}</p>
-            </div>
-          </div>
-        ) : (
-          <div className="flex gap-2">
-            <Link to="/login" className="btn">
-              Login
-            </Link>
-          </div>
-        )}
+      {user ? (
+  <div className="flex items-center gap-4 relative group">
+    {/* User Profile Image */}
+    <img
+      className="w-10 h-10 rounded-full group-hover:ring-4 group-hover:ring-[#7D0DC3] transition-all"
+      src={currentUser?.photo || user?.photoURL}
+      alt="User"
+    />
+    {/* Log Out Button */}
+    <button
+      onClick={userLogOut}
+      className="px-4 py-3 bg-black text-white text-sm rounded-md"
+    >
+      Log Out
+    </button>
+    <div className="hidden absolute top-14 -left-36 md:flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white shadow-lg rounded-lg w-64 py-6 z-10">
+      <p className="text-black font-bold text-xl mb-4">User Profile</p>
+      <div className="relative w-16 h-16 mb-2">
+  <img
+    className="w-16 h-16 rounded-full border-2 border-[#7D0DC3]"
+    src={currentUser?.photo || user?.photoURL}
+    alt="User"
+  />
+  <span className="absolute -bottom-2 -right-2 bg-[#7D0DC3] text-white text-xs font-semibold px-1  rounded-full shadow-lg">
+    {currentUser?.role || "Member"}
+  </span>
+</div>
+      <p className="font-semibold text-gray-800">{currentUser?.name || "User Name"}</p>
+      <p className="text-sm text-gray-500">{currentUser?.email || "user@example.com"}</p>
+    </div>
+  </div>
+) : (
+  <div className="flex gap-2">
+    <Link to="/login" className="btn bg-black text-white border-none">
+      Login
+    </Link>
+  </div>
+)}
+
       </div>
     </div>
   );

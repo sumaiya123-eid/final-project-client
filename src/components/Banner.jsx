@@ -2,12 +2,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Slider from "react-slick";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import img1 from '../assets/images/exercise1.jpg';
 import img2 from '../assets/images/exercise2.png';
 import img3 from '../assets/images/exercise3.png';
 import img4 from '../assets/images/exercise4.png';
+import { FaArrowRight } from "react-icons/fa";
 
 const Banner = () => {
   const navigate = useNavigate();
@@ -68,12 +69,13 @@ const Banner = () => {
             <div className="absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full text-white z-10 text-center px-4 md:px-10">
               <h2 className="text-2xl md:text-4xl font-bold mb-4">{slide.heading}</h2>
               <p className="text-sm md:text-lg mb-6">{slide.description}</p>
-              <button
-                onClick={() => navigate(slide.buttonLink)}
-                className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-md"
+             <Link to="/allClasses">
+             <button
+                className="px-6 py-3 flex items-center gap-3 bg-yellow-500 hover:bg-green-600 text-black font-bold border-none rounded-md"
               >
-                {slide.buttonText}
+                See Our Classes <FaArrowRight></FaArrowRight>
               </button>
+             </Link>
             </div>
           </div>
         ))}

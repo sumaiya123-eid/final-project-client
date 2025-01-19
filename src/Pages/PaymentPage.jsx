@@ -152,10 +152,10 @@ const PaymentPage = () => {
   if (isError) return <div>Error loading trainer details!</div>;
 
   return (
-    <section className="bg-gray-100 py-10">
+    <section className="bg-black py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Booking Details</h2>
+        <div className="bg-white  shadow-lg rounded-lg p-6">
+          <h2 className="text-3xl font-bold mb-4">Booking Details</h2>
           <div className="mb-6">
             <p><strong>Trainer Name:</strong> {trainerDetails.fullName}</p>
             <p><strong>Slot:</strong> {selectedDay}</p>
@@ -165,7 +165,7 @@ const PaymentPage = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">Your Name</label>
+              <label className="block text-base font-semibold text-black">Your Name</label>
               <input
                 type="text"
                 value={formData.name}
@@ -174,7 +174,7 @@ const PaymentPage = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-600">Your Email</label>
+              <label className="block text-base font-semibold text-black">Your Email</label>
               <input
                 type="email"
                 value={formData.email}
@@ -183,7 +183,7 @@ const PaymentPage = () => {
               />
             </div>
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-600">Your Phone</label>
+              <label className="block text-base font-semibold text-black">Your Phone</label>
               <input
                 type="text"
                 value={formData.phone}
@@ -195,14 +195,14 @@ const PaymentPage = () => {
 
             {/* Stripe Card Input */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-600">Card Information</label>
-              <CardElement className="w-full p-2 border border-gray-300 rounded-md" />
+              <label className="block text-base font-semibold text-black">Card Information</label>
+              <CardElement className="w-full p-2 border border-gray-300 text-white rounded-md" />
             </div>
 
             <button
               type="submit"
               disabled={!stripe}
-              className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
+              className="w-full px-6 py-3 bg-yellow-500 hover:bg-blue-600 text-black font-bold rounded-md"
             >
               Confirm Booking
             </button>

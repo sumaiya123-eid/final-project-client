@@ -48,14 +48,13 @@ const MyBookedTrainer = () => {
     );
   }
 
-  // Show error if something goes wrong with fetching data
-  if (isError) {
-    return <div className="text-red-500 text-center">Error: {error.message}</div>;
-  }
-
-  // If no data is returned, show a message
+  // If no trainer is booked, show a message instead of an error
   if (!data || !data.booking || !data.trainer) {
-    return <div className="text-center text-gray-500">No booking or trainer details found.</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-500 text-lg">No trainer booked yet.</p>
+      </div>
+    );
   }
 
   const { booking, trainer = { skills: [], classes: [] } } = data;

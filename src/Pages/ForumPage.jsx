@@ -127,7 +127,7 @@ const ForumPage = () => {
   };
 
   return (
-    <div className="container bg-black mx-auto my-10 px-4 min-h-screen">
+    <div className="container bg-black mx-auto mt-10 px-4 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-500">Forum</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data.posts.map((post) => (
@@ -184,7 +184,7 @@ const ForumPage = () => {
       </div>
 
       {/* Pagination */}
-      <div className="pagination mt-8 flex justify-center items-center space-x-2">
+      <div className="pagination mt-12 flex justify-center items-center space-x-2">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}

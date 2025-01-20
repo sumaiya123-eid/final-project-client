@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { FaEnvelope, FaUserAlt } from "react-icons/fa";
+import { Fade } from "react-awesome-reveal";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const NewsletterSubscription = () => {
@@ -32,71 +32,68 @@ const NewsletterSubscription = () => {
   return (
     <div className="bg-black text-white py-12 px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <motion.h2
-          className="text-4xl font-bold text-yellow-400"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Subscribe to Our Newsletter
-        </motion.h2>
-        <motion.p
-          className="text-lg text-gray-300 mt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          Stay updated with the latest news and offers!
-        </motion.p>
-        <motion.div
-          className="mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-        >
-          <div className="form-control w-full max-w-lg mx-auto space-y-4">
-            <div className="relative">
-              <FaUserAlt className="absolute top-3 left-3 text-gray-500" />
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="input input-bordered w-full pl-10 bg-gray-800 text-white"
-              />
+        {/* Title Animation */}
+        <Fade duration={1000}>
+          <h2 className="text-4xl font-bold text-yellow-400">
+            Subscribe to Our Newsletter
+          </h2>
+        </Fade>
+
+        {/* Description Animation */}
+        <Fade duration={1000} delay={500}>
+          <p className="text-lg text-gray-300 mt-4">
+            Stay updated with the latest news and offers!
+          </p>
+        </Fade>
+
+        {/* Form Animation */}
+        <Fade duration={1000} delay={700}>
+          <div className="mt-8">
+            <div className="form-control w-full max-w-lg mx-auto space-y-4">
+              <div className="relative">
+                <FaUserAlt className="absolute top-3 left-3 text-gray-500" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full pl-10 bg-gray-800 text-white"
+                />
+              </div>
+              <div className="relative">
+                <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="input input-bordered w-full pl-10 bg-gray-800 text-white"
+                />
+              </div>
+              <button
+                className="btn btn-warning w-full hover:scale-105 transition-transform"
+                onClick={handleSubscribe}
+              >
+                Subscribe Now
+              </button>
             </div>
-            <div className="relative">
-              <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="input input-bordered w-full pl-10 bg-gray-800 text-white"
-              />
-            </div>
-            <button
-              className="btn btn-warning w-full hover:scale-105 transition-transform"
-              onClick={handleSubscribe}
-            >
-              Subscribe Now
-            </button>
+
+            {/* Message Animation */}
+            {message && (
+              <Fade duration={1000} delay={200}>
+                <p
+                  className={`mt-4 text-lg font-semibold ${
+                    message.includes("Failed") ? "text-red-400" : "text-green-400"
+                  }`}
+                >
+                  {message}
+                </p>
+              </Fade>
+            )}
           </div>
-          {message && (
-            <motion.p
-              className={`mt-4 text-lg font-semibold ${
-                message.includes("Failed") ? "text-red-400" : "text-green-400"
-              }`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              {message}
-            </motion.p>
-          )}
-        </motion.div>
+        </Fade>
       </div>
     </div>
   );

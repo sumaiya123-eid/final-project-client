@@ -101,6 +101,7 @@ const AppliedTrainerDetails = () => {
         <p><strong>Age:</strong> {trainer.age || "Not provided"}</p>
         <p><strong>Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
         <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
+        <p><strong>Biography:</strong> {trainer.biography || "Not provided"}</p>
         <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
         <p><strong>Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
         <p><strong>Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>
@@ -147,6 +148,7 @@ const AppliedTrainerDetails = () => {
               <p><strong>Age:</strong> {trainer.age || "Not provided"}</p>
         <p><strong>Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
               <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
+              <p><strong>Biography:</strong> {trainer.biography || "Not provided"}</p>
               <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
               <p><strong>Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
               <p><strong>Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>

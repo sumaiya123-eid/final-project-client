@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AppliedTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -23,6 +24,9 @@ const AppliedTrainers = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Applied Trainer</title>
+                  </Helmet>
       <h2 className="text-2xl text-yellow-500 font-bold mb-6">Applied Trainers</h2>
       {appliedTrainers.length > 0 ? (
         <table className="table-auto w-full bg-y border-collapse border border-gray-200">

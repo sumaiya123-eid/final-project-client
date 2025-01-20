@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { FaChevronLeft, FaChevronRight, FaInfoCircle, FaChalkboardTeacher } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const fetchClasses = async (page, search) => {
   const axiosPublic = useAxiosPublic();
@@ -59,6 +60,9 @@ const AllClassesPage = () => {
 
   return (
     <div className="bg-black w-10/12 mx-auto min-h-screen py-10 px-4">
+      <Helmet>
+              <title>FitTrick | All Classes</title>
+            </Helmet>
       <h1 className="text-3xl font-bold text-yellow-500 text-center mb-8">All Classes</h1>
 
       {/* Search Box */}

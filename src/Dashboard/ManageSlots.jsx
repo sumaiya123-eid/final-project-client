@@ -3,6 +3,9 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaCross } from "react-icons/fa6";
+import { RxCross1 } from "react-icons/rx";
+import { Helmet } from "react-helmet-async";
 
 const ManageSlots = () => {
   const { user } = useContext(AuthContext);
@@ -92,6 +95,9 @@ const ManageSlots = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Manage Slots</title>
+                  </Helmet>
       <h2 className="text-3xl font-bold mb-4 text-yellow-500">Manage Slots</h2>
       {slots?.availableDays?.length === 0 ? (
         <p>No available days for this trainer</p>
@@ -118,9 +124,9 @@ const ManageSlots = () => {
                       <span>{day}</span>
                       <button
                         onClick={() => deleteAvailableDay(day)}
-                        className="btn btn-error btn-sm"
+                        className="btn bg-red-600 border-none text-black font-bold btn-sm"
                       >
-                        Delete Day
+                        Delete Slot
                       </button>
                     </div>
                   </td>
@@ -137,8 +143,8 @@ const ManageSlots = () => {
                       <td className="text-white">{slot.selectedPlan}</td>
                       <td className="text-white">{slot.price}</td>
                       <td>
-                        <button onClick={() => deleteSlot(slot._id)} className="btn btn-danger">
-                          Delete Slot
+                        <button onClick={() => deleteSlot(slot._id)} className="">
+                        <RxCross1 className="text-red-600 font-bold" />
                         </button>
                       </td>
                     </tr>

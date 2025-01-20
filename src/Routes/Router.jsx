@@ -52,7 +52,7 @@ import Balance from "../Dashboard/Balance";
           },
         {
             path:'/become-trainer',
-            element:<BeATrainer></BeATrainer>,
+            element:<PrivateRoute><BeATrainer></BeATrainer></PrivateRoute>,
           },
         {
             path:"/trainer-booked/:email",

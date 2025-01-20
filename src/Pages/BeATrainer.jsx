@@ -71,6 +71,7 @@ const BeATrainer = () => {
           skills: data.skills, // Already formatted as an array
           availableDays: data.availableDays, // Already formatted as an array
           availableTime: data.availableTime,
+          biography: data.biography,
           profileImage: res.data.data.display_url,
           role: "requested", // Set role to requested for application
           classes: data.classes, // Selected classes
@@ -106,6 +107,7 @@ const BeATrainer = () => {
 
   return (
     <div className="w-10/12 mx-auto mt-10">
+      <h3 className="text-yellow-500 font-bold text-center text-3xl">Be a Trainer</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="form-control w-full my-6 ">
@@ -168,7 +170,7 @@ const BeATrainer = () => {
         {/* Available Days */}
         <div className="form-control w-full my-6">
           <label className="label">
-            <span className="label-text text-white">Available Days*</span>
+            <span className="label-text text-white">Available Days (Slot Name)*</span>
           </label>
           <Select
             isMulti
@@ -193,6 +195,18 @@ const BeATrainer = () => {
             type="text"
             {...register("availableTime", { required: true })}
             placeholder="e.g., 9:00 AM - 5:00 PM"
+            className="input input-bordered w-full"
+          />
+        </div>
+
+        <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text text-white">Biography*</span>
+          </label>
+          <input
+            type="text"
+            {...register("biography", { required: true })}
+            placeholder="Biography"
             className="input input-bordered w-full"
           />
         </div>

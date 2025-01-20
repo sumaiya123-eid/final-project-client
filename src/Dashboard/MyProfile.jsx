@@ -4,6 +4,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaUserCircle, FaEdit, FaEnvelope, FaClock } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -104,6 +105,9 @@ export default function MyProfile() {
 
   return (
     <div className="min-h-screen bg-black flex justify-center items-center p-6 ">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Profile</title>
+                  </Helmet>
       <div className="w-full max-w-sm bg-black border-2 border-yellow-400 rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
         <div className="flex justify-center mb-4">
           {/* Profile Image Section */}

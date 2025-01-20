@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const skillOptions = [
   { value: "Strength Training", label: "Strength Training" },
@@ -109,6 +110,9 @@ const AddNewSlot = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Add Slots</title>
+                  </Helmet>
       <h2 className="text-3xl text-yellow-500 font-bold">Add New Slot</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}

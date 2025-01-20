@@ -136,7 +136,7 @@ export default function Navbar() {
       Log Out
     </button>
     <div className="hidden absolute top-14 -left-36 md:flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white shadow-lg rounded-lg w-64 py-6 z-10">
-      <p className="text-black font-bold text-xl mb-4">User Profile</p>
+      <p className="text-black font-bold text-xl mb-4">My Profile</p>
       <div className="relative w-16 h-16 mb-2">
   <img
     className="w-16 h-16 rounded-full border-2 border-[#7D0DC3]"

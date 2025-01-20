@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const TrainersList = () => {
@@ -48,6 +49,9 @@ const TrainersList = () => {
 
   return (
     <div className="w-10/12 mx-auto my-10">
+       <Helmet>
+                    <title>FitTrick | Dashboard | All Trainers</title>
+                  </Helmet>
       <h2 className="text-2xl text-yellow-500 font-bold mb-6">All Trainers</h2>
       {trainers.length > 0 ? (
         <table className="table-auto w-full border-collapse border border-gray-200">

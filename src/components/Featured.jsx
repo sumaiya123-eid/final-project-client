@@ -1,5 +1,6 @@
 import React from "react";
 import { FaDumbbell, FaAppleAlt, FaUsers, FaHeartbeat } from "react-icons/fa";
+import { Slide } from "react-awesome-reveal";
 
 const Featured = () => {
   const features = [
@@ -32,18 +33,20 @@ const Featured = () => {
         <p className="text-yellow-400 text-lg mb-12">
           Explore the key features that make our platform the best choice for your fitness journey.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-yellow-500 p-6 shadow-lg rounded-lg flex flex-col items-center text-center hover:bg-yellow-600 transition duration-300"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-white">{feature.description}</p>
-            </div>
-          ))}
-        </div>
+        <Slide direction="up" cascade damping={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-yellow-500 p-6 shadow-lg rounded-lg flex flex-col items-center text-center hover:bg-yellow-600 transition duration-300"
+              >
+                <div className="mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-white">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </Slide>
       </div>
     </section>
   );

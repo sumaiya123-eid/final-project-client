@@ -1,14 +1,20 @@
 import React from "react";
-import { FaCalendarCheck, FaClipboardList, FaHome, FaShoppingCart, FaUserAlt, FaUtensilSpoon } from "react-icons/fa";
+import { FaCalendarAlt, FaCalendarCheck, FaChalkboardTeacher, FaClipboardList, FaHome, FaPlusCircle, FaShoppingCart, FaUserAlt, FaUtensilSpoon } from "react-icons/fa";
 import {
   FaBangladeshiTakaSign,
   FaBook,
   FaBookAtlas,
+  FaChalkboard,
+  FaCommentDots,
+  FaComments,
   FaCreativeCommonsBy,
+  FaDollarSign,
   FaList,
   FaPhone,
   FaStreetView,
   FaUser,
+  FaUsers,
+  FaUserTie,
 } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
@@ -28,41 +34,42 @@ export default function Dashboard() {
           {isAdmin && (
             <>
               <li>
-                <NavLink to="/dashboard/subscribers">
-                  <FaHome />
-                  All Newsletter Subscribers
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/trainerList">
-                  <FaUtensilSpoon />
-                  All Trainers
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/appliedTrainers">
-                  <FaList />
-                  Applied Trainers
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/balance">
-                  <FaBookAtlas />
-                  Balance
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addClass">
-                  <FaUser />
-                  Add New Class
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addForum">
-                  <FaList />
-                  Add new Forum
-                </NavLink>
-              </li>
+  <NavLink to="/dashboard/subscribers">
+    <FaUsers /> {/* For newsletter subscribers */}
+    All Newsletter Subscribers
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/trainerList">
+    <FaUserTie /> {/* For trainers */}
+    All Trainers
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/appliedTrainers">
+    <FaClipboardList /> {/* For applied trainers */}
+    Applied Trainers
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/balance">
+    <FaDollarSign /> {/* For balance */}
+    Balance
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/addClass">
+    <FaChalkboardTeacher /> {/* For adding a new class */}
+    Add New Class
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/addForum">
+    <FaComments /> {/* For adding a new forum */}
+    Add new Forum
+  </NavLink>
+</li>
+
             </>
           )}
 
@@ -70,23 +77,24 @@ export default function Dashboard() {
           {isTrainer && !isAdmin && (
             <>
               <li>
-                <NavLink to="/dashboard/manageSlots">
-                  <FaHome />
-                  Manage Slots
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addSlot">
-                  <FaBook />
-                  Add New slot
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/addForum">
-                  <FaList />
-                  Add new Forum
-                </NavLink>
-              </li>
+  <NavLink to="/dashboard/manageSlots">
+    <FaCalendarAlt /> {/* For managing slots */}
+    Manage Slots
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/addSlot">
+    <FaPlusCircle /> {/* For adding a new slot */}
+    Add New Slot
+  </NavLink>
+</li>
+<li>
+  <NavLink to="/dashboard/addForum">
+    <FaCommentDots /> {/* For adding a new forum */}
+    Add New Forum
+  </NavLink>
+</li>
+
             </>
           )}
 
@@ -119,30 +127,31 @@ export default function Dashboard() {
 
         {/* Common Links */}
         <ul className="menu">
-          <li>
-            <Link to="/">
-              <FaHome />
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/menu">
-              <FaList />
-              Menu
-            </Link>
-          </li>
-          <li>
-            <Link to="/shop/salad">
-              <FaShoppingCart />
-              Shop
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact">
-              <FaPhone />
-              Contact
-            </Link>
-          </li>
+        <li>
+  <Link to="/">
+    <FaHome /> {/* Home icon */}
+    Home
+  </Link>
+</li>
+<li>
+  <Link to="/allTrainers">
+    <FaUserTie /> {/* For all trainers */}
+    All Trainers
+  </Link>
+</li>
+<li>
+  <Link to="/allClasses">
+    <FaChalkboard /> {/* For all classes */}
+    All Classes
+  </Link>
+</li>
+<li>
+  <Link to="/allForum">
+    <FaComments /> {/* For all forum */}
+    All Forum
+  </Link>
+</li>
+
         </ul>
       </div>
 

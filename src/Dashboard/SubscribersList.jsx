@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FaSpinner } from "react-icons/fa";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const SubscribersList = () => {
   const axiosPublic = useAxiosPublic();
@@ -33,6 +34,9 @@ const SubscribersList = () => {
 
   return (
     <div className="bg-black text-white py-12 px-4">
+      <Helmet>
+                    <title>FitTrick | Dashboard | All Newsletter Subscriber</title>
+                  </Helmet>
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-yellow-400 text-center mb-8">
           Newsletter Subscribers

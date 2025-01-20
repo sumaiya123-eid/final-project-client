@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import About from "../components/About";
 import Banner from "../components/Banner";
 import Featured from "../components/Featured";
@@ -12,6 +13,9 @@ import TrainerSection from "./TrainerSection";
 export default function Home() {
   return (
     <div>
+      <Helmet>
+                    <title>FitTrick | Home</title>
+                  </Helmet>
         <Banner></Banner>
         <Featured></Featured>
         <About></About>

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -104,6 +105,9 @@ const AddClassPage = () => {
 
   return (
     <div className="container my-5 w-10/12 mx-auto p-6 border border-yellow-500 ">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Add Class</title>
+                  </Helmet>
       <h1 className="text-3xl text-yellow-500 font-semibold mb-6">Add New Class</h1>
 
       <form onSubmit={handleSubmit}>

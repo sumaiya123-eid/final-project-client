@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import {
   FaFacebook,
   FaTwitter,
@@ -49,6 +50,9 @@ const AllTrainers = () => {
 
   return (
     <section className="bg-black py-16">
+      <Helmet>
+        <title>FitTrick | All Trainers</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-yellow-500 mb-12 text-center drop-shadow-lg">
           Meet Our Trainers
@@ -123,7 +127,7 @@ const AllTrainers = () => {
                  {/* Available days */}
                  <div className="mb-4">
                   <h3 className="text-base font-semibold flex items-center gap-2 text-yellow-500">
-                    <FaStar className="text-yellow-500" /> <p className="text-yellow-500 font-bold">Available Days :</p>
+                    <FaStar className="text-yellow-500" /> <p className="text-yellow-500 font-bold">Available Slots :</p>
                   </h3>
                   <p className="text-yellow-500 text-base">
                     {trainer.availableDays.length > 0

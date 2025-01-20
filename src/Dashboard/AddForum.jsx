@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosSecure from "../hooks/useAxiosSecure"; // Custom hook for Axios
 import { useQuery } from "@tanstack/react-query"; // Import useQuery from React Query
+import { Helmet } from "react-helmet-async";
 
 const AddForum = () => {
   const { user } = useContext(AuthContext); // Get logged-in user info
@@ -79,6 +80,9 @@ const AddForum = () => {
 
   return (
     <div className="container mx-auto px-4 py-10">
+      <Helmet>
+                    <title>FitTrick | Dashboard | Add Forum</title>
+                  </Helmet>
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-500">Create a Forum Post</h1>
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-black border border-yellow-500 p-6 shadow-md rounded-lg">
         <div className="mb-4">

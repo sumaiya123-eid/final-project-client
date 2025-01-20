@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { FaChalkboardTeacher, FaInfoCircle } from "react-icons/fa";
+import { FaArrowRight, FaChalkboardTeacher, FaInfoCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import bg from "../assets/images/newsletter-bg.jpg"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const TrainerSection = () => {
     const navigate=useNavigate()
   const axiosPublic = useAxiosPublic();
@@ -46,6 +46,7 @@ const TrainerSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {trainers
             .filter((trainer) => trainer.role === "trainer")
+            .slice(0, 3)
             .map((trainer) => (
               <motion.div
                 key={trainer._id}
@@ -83,6 +84,11 @@ const TrainerSection = () => {
                 </div>
               </motion.div>
             ))}
+        </div>
+        <div className="flex justify-end mt-3">
+        <Link to="/allTrainers">
+        <button className="bg-yellow-500 btn border-none text-black font-bold flex items-center gap-1">See all Trainers <FaArrowRight></FaArrowRight></button>
+        </Link>
         </div>
       </div>
     </section>

@@ -31,12 +31,14 @@ import ForumDetails from "../Pages/ForumDetails";
 import NewsletterSubscription from "../Pages/NewsletterSubscription";
 import SubscribersList from "../Dashboard/SubscribersList";
 import Balance from "../Dashboard/Balance";
+import ErrorPage from "../Pages/ErrorPage";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:'/',
@@ -56,7 +58,7 @@ import Balance from "../Dashboard/Balance";
           },
         {
             path:"/trainer-booked/:email",
-            element:<TrainerBookedPage></TrainerBookedPage>,
+            element:<PrivateRoute><TrainerBookedPage></TrainerBookedPage></PrivateRoute>,
           },
         {
             path:"/payment/:email",

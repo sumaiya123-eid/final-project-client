@@ -1,21 +1,14 @@
 import React from "react";
-import { FaCalendarAlt, FaCalendarCheck, FaChalkboardTeacher, FaClipboardList, FaHome, FaPlusCircle, FaShoppingCart, FaUserAlt, FaUtensilSpoon } from "react-icons/fa";
+import { FaCalendarAlt, FaCalendarCheck, FaChalkboardTeacher, FaClipboardList, FaHome, FaPlusCircle, FaUserAlt } from "react-icons/fa";
 import {
-  FaBangladeshiTakaSign,
-  FaBook,
-  FaBookAtlas,
   FaChalkboard,
   FaCommentDots,
   FaComments,
-  FaCreativeCommonsBy,
   FaDollarSign,
-  FaList,
-  FaPhone,
-  FaStreetView,
-  FaUser,
   FaUsers,
   FaUserTie,
 } from "react-icons/fa6";
+import { FaDumbbell } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useTrainer from "../hooks/useTrainer";
@@ -27,8 +20,8 @@ export default function Dashboard() {
   return (
     <div className="flex">
       <div className="w-[250px] bg-yellow-400 min-h-screen *:text-black *:font-bold">
-        <h3 className="flex justify-center font-bold mt-6 ">BISTRO BOSS </h3>
-        <h3 className="text-center mb-10">RESTAURANT</h3>
+        <h3 className="flex text-5xl justify-center font-bold mt-6 "><FaDumbbell className="text-black text-5xl" /></h3>
+        <h3 className="text-center text-3xl mb-10">FitTrick</h3>
         <ul className="menu">
           {/* Admin-specific options */}
           {isAdmin && (

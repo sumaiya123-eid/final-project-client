@@ -70,12 +70,14 @@ const TrainerBookedPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Trainer Info */}
           <div className="bg-black border border-yellow-500 shadow-lg rounded-lg p-6 space-y-5">
-            <img
-              src={trainer.profileImage || "/default-avatar.jpg"}
-              alt={trainer.fullName}
-              className="w-full h-48 object-fit rounded-xl transform transition-transform duration-500 hover:scale-110 p-2"
-            />
-            <div className="mt-4 space-y-2">
+            <div className="rounded-full p-1 bg-yellow-500 w-56 h-56 mx-auto">
+                           <img
+                             src={trainer.profileImage || "/default-avatar.jpg"}
+                             alt={trainer.fullName}
+                             className="w-full h-full rounded-full shadow-lg transform transition-transform duration-500 hover:scale-110"
+                           />
+                         </div>
+            <div className="mt-8 space-y-2">
               <h2 className="text-xl font-semibold flex items-center gap-2 justify-start text-yellow-500">
                 <FaUserAlt className="text-blue-500" /> Trainer Name :{" "}
                 {trainer.fullName}

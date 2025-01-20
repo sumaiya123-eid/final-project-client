@@ -139,7 +139,7 @@ const ForumPage = () => {
             key={post._id}
             className="post-card bg-yellow-500 *:text-black rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 p-5 flex flex-col h-full"
           >
-            <div className="flex items-center justify-between">
+            <div className="md:flex items-center justify-between">
               <div className="text-sm text-gray-600">{post.email}</div> {/* Author email */}
               {renderRoleBadge(post.role)}
             </div>
@@ -192,17 +192,17 @@ const ForumPage = () => {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="btn btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
+            className="btn btn-xs md:btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
           >
-            <FaChevronLeft className="mr-1" /> Previous
+            <FaChevronLeft className="mr-1 hidden md:block" /> Previous
           </button>
           {renderPageNumbers()}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === data.totalPages}
-            className="btn btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
+            className="btn btn-xs md:btn-sm bg-gray-800 text-white hover:bg-yellow-500 flex items-center"
           >
-            Next <FaChevronRight className="ml-1" />
+            Next <FaChevronRight className="ml-1 hidden md:block" />
           </button>
         </div>
     </div>

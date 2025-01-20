@@ -3,6 +3,7 @@ import { FaInfoCircle, FaUserShield, FaUserTie } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic"; // Assuming this is where axiosPublic is defined
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ForumPosts = () => {
   const axiosPublic = useAxiosPublic();
@@ -98,14 +99,15 @@ const ForumPosts = () => {
             </p>
 
             <div className="card-actions justify-end mt-4">
-              <a
-                href={`/forumDetails/${post._id}`}
+             <Link to={`/forumDetails/${post._id}`}>
+             <a
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn bg-black text-white border-none btn-sm hover:scale-105 transition-all"
               >
                 Read More
               </a>
+             </Link>
             </div>
           </div>
         ))}

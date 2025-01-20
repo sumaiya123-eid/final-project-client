@@ -48,7 +48,7 @@ const TrainersList = () => {
   if (isError) return <p>Failed to load trainers.</p>;
 
   return (
-    <div className="w-10/12 mx-auto my-10">
+    <div className=" w-10/12 mx-auto mt-10 min-h-screen">
        <Helmet>
                     <title>FitTrick | Dashboard | All Trainers</title>
                   </Helmet>

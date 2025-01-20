@@ -59,7 +59,7 @@ const AllClassesPage = () => {
   };
 
   return (
-    <div className="bg-black w-10/12 mx-auto min-h-screen py-10 px-4">
+    <div className="bg-black w-11/12 md:w-10/12 mx-auto min-h-screen py-10 md:px-4">
       <Helmet>
               <title>FitTrick | All Classes</title>
             </Helmet>
@@ -80,7 +80,7 @@ const AllClassesPage = () => {
         {data.classes.map((classItem) => (
           <div
             key={classItem._id}
-            className="class-card *:text-yellow-500 bg-black border border-yellow-500 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 p-4"
+            className="class-card bg-black border border-yellow-500 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 p-4"
           >
             <div className="relative">
               <img
@@ -92,20 +92,20 @@ const AllClassesPage = () => {
                 Booking Count: {classItem.bookingCount}
               </div>
             </div>
-            <h2 className="text-xl font-semibold mt-4 flex items-center text-black">
-              <FaInfoCircle className="mr-2" /> {classItem.name}
+            <h2 className="text-xl font-semibold mt-4 flex items-center text-yellow-500">
+              <FaInfoCircle className="mr-2 text-white" /> {classItem.name}
             </h2>
-            <p className="text-black text-sm mt-2 mb-2">
-              <strong>Description: </strong> {classItem.description}
+            <p className="text-yellow-500 text-sm mt-2 mb-2">
+              <strong className="text-white">Description: </strong> {classItem.description}
             </p>
-            <p className="text-black text-sm mb-4">
-              <strong>Additional Info: </strong> {classItem.additionalInfo}
+            <p className="text-yellow-500 text-sm mb-4">
+              <strong className="text-white">Additional Info: </strong> {classItem.additionalInfo}
             </p>
-            <h3 className="font-semibold text-black flex items-center">
-              <FaChalkboardTeacher className="text-yellow-500 mr-2" /> Trainers:
+            <h3 className="font-semibold text-white flex items-center">
+              <FaChalkboardTeacher className="text-white mr-2" /> Trainers:
             </h3>
             {classItem.trainers && classItem.trainers.length > 0 ? (
-              <div className="flex items-center mt-3 space-x-2">
+              <div className="flex items-center mt-3 space-x-2 ">
                 {classItem.trainers.slice(0, 5).map((trainer, index) => (
                   <div
                     key={index}
@@ -124,8 +124,8 @@ const AllClassesPage = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-black text-sm mt-3">
-                <FaChalkboardTeacher className="text-black mr-2 inline" />
+              <p className="text-yellow-500 text-sm mt-3">
+                <FaChalkboardTeacher className="text-yellow-500 mr-2 inline" />
                 No trainers available for this class.
               </p>
             )}

@@ -49,7 +49,7 @@ export default function Navbar() {
               <Link to="/allClasses">All Classes</Link>
             </li>
             <li>
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/allForum">All Forum</Link>
             </li>
             {
             user && isAdmin && <li className="text-white "><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
@@ -63,7 +63,7 @@ export default function Navbar() {
         }
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl transition-transform transform hover:scale-110"><FaDumbbell className="text-black text-5xl" /><p className="font-bold text-2xl">Fit<span className="text-black"> Trick</span></p></a>
+        <a className="btn btn-ghost text-xl transition-transform transform hover:scale-110"><FaDumbbell className="text-black text-5xl" /><p className="font-bold text-2xl hidden md:block">Fit<span className="text-black"> Trick</span></p></a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal flex gap-5 items-center px-1">

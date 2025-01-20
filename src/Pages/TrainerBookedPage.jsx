@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-// import useAxiosPublic from "../hooks/useAxiosPublic";
 import {
   FaBirthdayCake,
   FaClock,
@@ -9,9 +8,8 @@ import {
   FaFire,
   FaListAlt,
   FaStar,
-  FaToolbox,
   FaUserAlt,
-} from "react-icons/fa"; // Importing icons from react-icons
+} from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
@@ -48,14 +46,18 @@ const TrainerBookedPage = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading trainer details!</div>;
+
   const handleJoinNow = () => {
     if (selectedPlan) {
-      // Get the price from the selected plan
       const price = membershipPrices[selectedPlan];
 
-      // Redirect to the payment page with the selected plan, trainer email, and selectedSlot
+      // Include the trainer's classes in the query string, joining them with a delimiter
+      const classes = trainer.classes.join(",");
+
       navigate(
-        `/payment/${email}?plan=${selectedPlan}&price=${price}&day=${selectedDay}`
+        `/payment/${email}?plan=${selectedPlan}&price=${price}&day=${selectedDay}&classes=${encodeURIComponent(
+          classes
+        )}`
       );
     } else {
       alert("Please select a membership plan.");
@@ -84,10 +86,10 @@ const TrainerBookedPage = () => {
                 {trainer.email}
               </p>
               <p className="text-yellow-500 text-xl flex items-center gap-2">
-              <FaClock className="text-purple-500" />
-                         <p className="text-yellow-500 font-bold">Selected Slot :</p>
-                         {selectedDay}
-                            </p>
+                <FaClock className="text-purple-500" />
+                <p className="text-yellow-500 font-bold">Selected Slot :</p>
+                {selectedDay}
+              </p>
               {/* Classes */}
               <div className="mb-4">
                 <h3 className="text-xl font-semibold flex items-center gap-2 text-yellow-500">

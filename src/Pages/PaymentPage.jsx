@@ -8,7 +8,6 @@ import { Elements, CardElement, useStripe, useElements } from "@stripe/react-str
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
-// Stripe public key
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const PaymentPage = () => {
@@ -17,30 +16,25 @@ const PaymentPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const selectedPlan = queryParams.get("plan");
   const selectedDay = queryParams.get("day");
+  const classes = queryParams.get("classes")?.split(",") || []; 
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext); // Get logged-in user info
+  const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
 
-  const { data: trainerDetails, isLoading, isError } = useQuery({
-    queryKey: ["trainer", email],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get(`/users/${email}`);
-      return data;
-    },
+  const [selectedClasses, setSelectedClasses] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const membershipPrices = {
     basic: 10,
     standard: 50,
     premium: 100,
   };
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
 
   useEffect(() => {
     if (user) {
@@ -52,48 +46,35 @@ const PaymentPage = () => {
     }
   }, [user]);
 
-  // Stripe hooks
   const stripe = useStripe();
   const elements = useElements();
 
-  // Function to create Payment Intent
   const createPaymentIntent = async (amount) => {
     try {
-      const response = await axiosPublic.post('/create-payment-intent', { amount });
+      const response = await axiosPublic.post("/create-payment-intent", { amount });
       return response.data.clientSecret;
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error Creating Payment Intent",
-        text: error.message,
-      });
+      Swal.fire("Error", "Failed to create payment intent. Try again later.", "error");
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!formData.phone) {
-      Swal.fire({
-        icon: "error",
-        title: "Missing Phone Number",
-        text: "Please provide your phone number.",
-      });
+    if (!formData.phone || selectedClasses.length === 0) {
+      Swal.fire("Missing Information", "Please select at least one class and provide all details.", "error");
       return;
     }
 
     if (!stripe || !elements) {
-      Swal.fire({
-        icon: "error",
-        title: "Stripe is not loaded",
-        text: "Please try again later.",
-      });
+      Swal.fire("Stripe Error", "Stripe is not properly initialized.", "error");
       return;
     }
 
+    setLoading(true); 
+
     const cardElement = elements.getElement(CardElement);
-    
-    const paymentIntentSecret = await createPaymentIntent(membershipPrices[selectedPlan] * 100); // Amount in cents
+    const paymentIntentSecret = await createPaymentIntent(membershipPrices[selectedPlan] * 100);
 
     const { error, paymentIntent } = await stripe.confirmCardPayment(paymentIntentSecret, {
       payment_method: {
@@ -105,14 +86,11 @@ const PaymentPage = () => {
       },
     });
 
+    setLoading(false); 
+
     if (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Payment Failed",
-        text: error.message,
-      });
-    } else if (paymentIntent.status === 'succeeded') {
-      // Payment succeeded, save the booking
+      Swal.fire("Payment Error", error.message, "error");
+    } else if (paymentIntent.status === "succeeded") {
       const bookingData = {
         trainerEmail: email,
         name: formData.name,
@@ -120,48 +98,60 @@ const PaymentPage = () => {
         phone: formData.phone,
         selectedPlan,
         selectedDay,
+        selectedClasses, 
         price: membershipPrices[selectedPlan],
         paymentIntentId: paymentIntent.id,
       };
 
       try {
         const response = await axiosPublic.post("/save-booking", bookingData);
-        if (response.data?.message === "Booking saved successfully") {
-          Swal.fire({
-            icon: "success",
-            title: "Booking & Payment Successful!",
-            text: "Your booking and payment has been saved successfully.",
-          }).then(() => {
-            navigate("/success");
-          });
-        } else {
-          throw new Error("Booking failed. Please try again.");
+        if (response.data.message === "Booking saved successfully and class booking count updated.") {
+          Swal.fire("Success", "Booking and payment successful!", "success").then(() =>
+            navigate("/dashboard/myBookedTrainer")
+          );
         }
       } catch (error) {
-        console.error("Booking Error:", error.message);
-        Swal.fire({
-          icon: "error",
-          title: "Booking Failed",
-          text: error.message,
-        });
+        Swal.fire("Error", "Failed to save booking. Try again.", "error");
       }
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading trainer details!</div>;
+  const handleClassSelection = (cls) => {
+    setSelectedClasses((prevClasses) =>
+      prevClasses.includes(cls)
+        ? prevClasses.filter((item) => item !== cls) 
+        : [...prevClasses, cls] 
+    );
+  };
 
   return (
     <section className="bg-black py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white  shadow-lg rounded-lg p-6">
+        <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-3xl font-bold mb-4">Booking Details</h2>
           <div className="mb-6">
-            <p><strong>Trainer Name:</strong> {trainerDetails.fullName}</p>
+            <p><strong>Trainer Email:</strong> {email}</p>
             <p><strong>Slot:</strong> {selectedDay}</p>
             <p><strong>Package:</strong> {selectedPlan}</p>
             <p><strong>Price:</strong> ${membershipPrices[selectedPlan]}</p>
           </div>
+
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">Select Classes <p className="font-normal text-base">(You have to choose multiple or at least one class to book thr Trainer)</p></h3>
+          <ul className="mb-6">
+            {classes.map((cls, index) => (
+              <li key={index}>
+                <input
+                  type="checkbox"
+                  id={`class-${index}`}
+                  name="selectedClasses"
+                  value={cls}
+                  checked={selectedClasses.includes(cls)}
+                  onChange={() => handleClassSelection(cls)}
+                />
+                <label htmlFor={`class-${index}`} className="ml-2">{cls}</label>
+              </li>
+            ))}
+          </ul>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -193,18 +183,21 @@ const PaymentPage = () => {
               />
             </div>
 
-            {/* Stripe Card Input */}
             <div className="mb-6">
               <label className="block text-base font-semibold text-black">Card Information</label>
-              <CardElement className="w-full p-2 border border-gray-300 text-white rounded-md" />
+              <CardElement className="w-full p-2 border border-gray-300 rounded-md" />
             </div>
 
             <button
               type="submit"
-              disabled={!stripe}
-              className="w-full px-6 py-3 bg-yellow-500 hover:bg-blue-600 text-black font-bold rounded-md"
+              disabled={loading || !stripe}
+              className="w-full px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-md"
             >
-              Confirm Booking
+              {loading ? (
+                <span>Processing...</span> 
+              ) : (
+                "Confirm Booking"
+              )}
             </button>
           </form>
         </div>

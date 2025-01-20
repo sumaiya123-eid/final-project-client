@@ -125,19 +125,20 @@ const MyBookedTrainer = () => {
             <FaStar className="text-yellow-500" /> <p className="text-white">Skills:</p>
           </h3>
           <div className="flex gap-3 flex-wrap">
-            {trainer.skills?.length > 0 ? (
-              trainer.skills.slice(0, 3).map((skill, index) => (
-                <button
-                  key={index}
-                  className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
-                >
-                  {skill}
-                </button>
-              ))
-            ) : (
-              <p className="text-gray-600">No skills available.</p>
-            )}
-          </div>
+  {trainer.skills?.length > 0 ? (
+    trainer.skills.map((skill, index) => (
+      <button
+        key={index}
+        className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
+      >
+        {skill}
+      </button>
+    ))
+  ) : (
+    <p className="text-gray-600">No skills available.</p>
+  )}
+</div>
+
         </div>
 
         {/* Classes */}
@@ -146,19 +147,20 @@ const MyBookedTrainer = () => {
             <FaListAlt className="text-yellow-500" /> <p className="text-white">Classes:</p>
           </h3>
           <div className="flex gap-3 flex-wrap">
-            {trainer.classes?.length > 0 ? (
-              trainer.classes.slice(0, 3).map((classItem, index) => (
-                <button
-                  key={index}
-                  className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
-                >
-                  {classItem}
-                </button>
-              ))
-            ) : (
-              <p className="text-gray-600">No classes available.</p>
-            )}
-          </div>
+  {trainer.classes?.length > 0 ? (
+    trainer.classes.map((classItem, index) => (
+      <button
+        key={index}
+        className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
+      >
+        {classItem}
+      </button>
+    ))
+  ) : (
+    <p className="text-gray-600">No classes available.</p>
+  )}
+</div>
+
         </div>
       </div>
 

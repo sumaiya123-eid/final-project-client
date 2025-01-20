@@ -85,7 +85,7 @@ const AllClassesPage = () => {
                 className="w-full h-48 object-fit rounded-t-lg"
               />
               <div className="absolute top-2 left-2 bg-black text-yellow-500 text-xs px-3 py-1 rounded-full shadow">
-                Trainers: {classItem.trainers.length}
+                Booking Count: {classItem.bookingCount}
               </div>
             </div>
             <h2 className="text-xl font-semibold mt-4 flex items-center text-black">

@@ -21,7 +21,7 @@ export default function Dashboard() {
     <div className="flex">
       <div className="w-[250px] bg-yellow-400 min-h-screen *:text-black *:font-bold">
         <h3 className="flex text-5xl justify-center font-bold mt-6 "><FaDumbbell className="text-black text-5xl" /></h3>
-        <h3 className="text-center text-3xl mb-10">FitTrick</h3>
+        <h3 className="text-center text-3xl mb-10 flex justify-center"><p className="text-white">Fit</p>Connect</h3>
         <ul className="menu">
           {/* Admin-specific options */}
           {isAdmin && (

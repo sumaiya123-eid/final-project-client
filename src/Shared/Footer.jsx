@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto text-center text-black">
         <div className="mb-6">
           <FaDumbbell className="mx-auto mb-4 text-5xl text-gray-800" /> {/* Added FaDumbbell as logo */}
-          <h2 className="text-3xl font-semibold">Your Website Name</h2>
+          <h2 className="text-3xl flex justify-center font-bold"><p className='text-white'>Fit</p>Connect</h2>
           <p className="mt-2 text-lg">Innovating for a better future.</p>
         </div>
 
@@ -16,9 +16,9 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="footer-section">
             <h3 className="text-xl font-semibold">Contact Information</h3>
-            <p className="mt-2">Email: contact@yourwebsite.com</p>
+            <p className="mt-2">Email: contact@FitConnect.com</p>
             <p>Phone: (123) 456-7890</p>
-            <p>Address: 123 Your Street, City, Country</p>
+            <p>Address: 123 Dhanmondi , Dhaka, Bangladesh</p>
           </div>
 
           {/* Social Media Links */}
@@ -44,13 +44,13 @@ const Footer = () => {
           <div className="footer-section">
             <h3 className="text-xl font-semibold">Our Location</h3>
             <p className="mt-2">Visit Us at:</p>
-            <p>123 Your Street, City, Country</p>
+            <p>123 Dhanmondi , Dhaka, Bangladesh</p>
           </div>
         </div>
 
         {/* Footer Bottom */}
         <div className="mt-10">
-          <p className="text-sm opacity-70">© 2025 Your Website Name. All rights reserved.</p>
+          <p className="text-sm opacity-70">© 2025 FitConnect. All rights reserved.</p>
         </div>
       </div>
     </footer>

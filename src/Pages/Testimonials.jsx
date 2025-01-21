@@ -63,7 +63,7 @@ const Testimonials = () => {
       >
         {data.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="border-2 max-h-64 border-yellow-600 rounded-lg p-6 shadow-xl bg-black transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+            <div className="border-2 h-64 border-yellow-600 rounded-lg p-6 shadow-xl bg-black transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
               <div className="flex items-center mb-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
                   <p className="text-xl font-semibold text-white">

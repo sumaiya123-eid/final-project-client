@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 // import { AuthContext } from "../provider/AuthProvider";
-import { FaCartShopping } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useTrainer from "../hooks/useTrainer";
@@ -52,11 +51,11 @@ export default function Navbar() {
               <Link to="/allForum">All Forum</Link>
             </li>
             {
-            user && isAdmin && <li className="text-white "><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
+            user && isAdmin && <li className="text-white "><Link to="/dashboard/subscribers">Dashboard</Link></li>
         }
 
           {
-            user && isTrainer && <li className="text-white "><Link to="/dashboard/addForum">Dashboard</Link></li>
+            user && isTrainer && <li className="text-white "><Link to="/dashboard/activityLog">Dashboard</Link></li>
         }
         {
             user && !isAdmin && !isTrainer && <li className="text-white"><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
@@ -108,14 +107,14 @@ export default function Navbar() {
             All Forum
           </NavLink>
           {
-            user && isAdmin && <li className="text-black font-bold"><Link to="/dashboard/appliedTrainers">Dashboard</Link></li>
+            user && isAdmin && <li className="text-black font-bold"><Link to="/dashboard/subscribers">Dashboard</Link></li>
         }
 
           {
             user && isTrainer && <li className="text-black font-bold"><Link to="/dashboard/addForum">Dashboard</Link></li>
         }
         {
-            user && !isAdmin && !isTrainer && <li className="text-black font-bold"><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
+            user && !isAdmin && !isTrainer && <li className="text-black font-bold"><Link to="/dashboard/activityLog">Dashboard</Link></li>
         }
         </ul>
       </div>

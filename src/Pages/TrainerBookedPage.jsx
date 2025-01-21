@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const TrainerBookedPage = () => {
   const { email } = useParams(); // Access the email from URL params
@@ -60,7 +61,8 @@ const TrainerBookedPage = () => {
         )}`
       );
     } else {
-      alert("Please select a membership plan.");
+      // alert("Please select a membership plan.");
+      Swal.fire("Please select a membership plan!");
     }
   };
 

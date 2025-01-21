@@ -95,16 +95,23 @@ const AppliedTrainerDetails = () => {
   return (
     <div className="w-10/12 mx-auto my-10">
       <h2 className="text-4xl text-yellow-500 font-bold mb-6">Trainer Details</h2>
-      <div className="mb-6 *:text-white *:text-2xl">
-        <p><strong>Name:</strong> {trainer.fullName}</p>
-        <p><strong>Email:</strong> {trainer.email}</p>
-        <p><strong>Age:</strong> {trainer.age || "Not provided"}</p>
-        <p><strong>Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
-        <p><strong>Experience:</strong> {trainer.experience || "Not provided"}</p>
-        <p><strong>Biography:</strong> {trainer.biography || "Not provided"}</p>
-        <p><strong>Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
-        <p><strong>Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
-        <p><strong>Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>
+      <div className="mb-6 *:text-white *:text-xl">
+      <div className="w-32 h-32 rounded-full p-1 bg-yellow-500 ">
+                  <img
+                    src={trainer.profileImage || "/default-avatar.jpg"}
+                    alt={trainer.fullName}
+                    className="w-full h-full rounded-full shadow-lg transform transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+        <p><strong className="text-yellow-500">Name:</strong> {trainer.fullName}</p>
+        <p><strong className="text-yellow-500">Email:</strong> {trainer.email}</p>
+        <p><strong className="text-yellow-500">Age:</strong> {trainer.age || "Not provided"}</p>
+        <p><strong className="text-yellow-500">Available Time:</strong> {trainer.availableTime || "Not provided"}</p>
+        <p><strong className="text-yellow-500">Experience:</strong> {trainer.experience || "Not provided"}</p>
+        <p><strong className="text-yellow-500">Biography:</strong> {trainer.biography || "Not provided"}</p>
+        <p><strong className="text-yellow-500">Skills:</strong> {trainer.skills ? trainer.skills.join(", ") : "Not provided"}</p>
+        <p><strong className="text-yellow-500">Classes:</strong> {trainer.classes ? trainer.classes.join(", ") : "Not provided"}</p>
+        <p><strong className="text-yellow-500">Available Days:</strong> {trainer.availableDays ? trainer.availableDays.join(", ") : "Not provided"}</p>
       </div>
 
       <div className="flex space-x-4">

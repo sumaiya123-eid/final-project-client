@@ -92,6 +92,7 @@ const ManageSlots = () => {
   };
 
   if (isLoading) return <p>Loading slots...</p>;
+  
 
   return (
     <div className="p-4">
@@ -108,6 +109,7 @@ const ManageSlots = () => {
               <th>Available Day</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Selected Classes</th>
               <th>Phone</th>
               <th>Plan</th>
               <th>Price</th>
@@ -118,10 +120,10 @@ const ManageSlots = () => {
             {slots?.availableDays?.map((day) => (
               <React.Fragment key={day}>
                 {/* Row for available day */}
-                <tr className="font-bold text-lg text-white">
+                <tr className="font-bold bg-white mx-auto text-lg text-black">
                   <td colSpan="7">
                     <div className="flex justify-between">
-                      <span>{day}</span>
+                      <span >{day}</span>
                       <button
                         onClick={() => deleteAvailableDay(day)}
                         className="btn bg-red-600 border-none text-black font-bold btn-sm"
@@ -135,10 +137,16 @@ const ManageSlots = () => {
                 {/* Booked slots for the day */}
                 {slots?.bookedSlots?.[day]?.length > 0 ? (
                   slots?.bookedSlots[day]?.map((slot) => (
+                    
                     <tr key={slot._id}>
                       <td></td>
                       <td className="text-white">{slot.name}</td>
                       <td className="text-white">{slot.email}</td>
+                      <td className="text-white">
+    {Array.isArray(slot.selectedClasses) && slot.selectedClasses.length > 0
+      ? slot.selectedClasses.join(", ")
+      : "No classes selected"}
+  </td>
                       <td className="text-white">{slot.phone}</td>
                       <td className="text-white">{slot.selectedPlan}</td>
                       <td className="text-white">{slot.price}</td>

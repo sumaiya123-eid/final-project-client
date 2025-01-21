@@ -126,6 +126,7 @@ const PaymentPage = () => {
 
   return (
     <section className="bg-black py-10">
+      <h3 className="text-3xl text-yellow-500 font-bold text-center mb-8">Payment Page</h3>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-3xl font-bold mb-4">Booking Details</h2>
@@ -136,7 +137,7 @@ const PaymentPage = () => {
             <p><strong>Price:</strong> ${membershipPrices[selectedPlan]}</p>
           </div>
 
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">Select Classes <p className="font-normal text-base">(You have to choose multiple or at least one class to book thr Trainer)</p></h3>
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">Select Classes <p className="font-normal text-base">(You have to choose multiple or at least one class to book the Trainer)</p></h3>
           <ul className="mb-6">
             {classes.map((cls, index) => (
               <li key={index}>

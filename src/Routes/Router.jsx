@@ -62,7 +62,7 @@ import ErrorPage from "../Pages/ErrorPage";
           },
         {
             path:"/payment/:email",
-            element:<PaymentPage></PaymentPage>,
+            element:<PrivateRoute><PaymentPage></PaymentPage></PrivateRoute>,
           },
         {
             path:"/allClasses",
@@ -136,15 +136,15 @@ import ErrorPage from "../Pages/ErrorPage";
           // user only route
         {
           path:"/dashboard/myProfile",
-          element:<MyProfile></MyProfile>
+          element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
         },
         {
           path:"/dashboard/activityLog",
-          element:<ActivityLog></ActivityLog>
+          element:<PrivateRoute><ActivityLog></ActivityLog></PrivateRoute>
         },
         {
           path:"/dashboard/myBookedTrainer",
-          element:<MyBookedTrainer></MyBookedTrainer>
+          element:<PrivateRoute><MyBookedTrainer></MyBookedTrainer></PrivateRoute>
         },
       ]
     }

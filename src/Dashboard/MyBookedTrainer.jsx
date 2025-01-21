@@ -70,6 +70,7 @@ const MyBookedTrainer = () => {
     try {
       const payload = {
         userId: user.email, // Use the user's email as the identifier
+        trainerEmail: trainer.email,
         rating: reviewData.rating,
         feedback: reviewData.feedback,
       };
@@ -145,6 +146,28 @@ const MyBookedTrainer = () => {
 
         </div>
 
+         {/* slots */}
+         <div>
+          <h3 className="text-xl font-medium flex items-center gap-2 text-yellow-400">
+            <FaStar className="text-yellow-500" /> <p className="text-white">Slots:</p>
+          </h3>
+          <div className="flex gap-3 flex-wrap">
+  {trainer.availableDays?.length > 0 ? (
+    trainer.availableDays.map((slot, index) => (
+      <button
+        key={index}
+        className="text-xs font-medium text-black bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-200"
+      >
+        {slot}
+      </button>
+    ))
+  ) : (
+    <p className="text-gray-600">No slot available.</p>
+  )}
+</div>
+
+        </div>
+
         {/* Classes */}
         <div>
           <h3 className="text-xl font-medium flex items-center gap-2 text-yellow-400">
@@ -179,7 +202,7 @@ const MyBookedTrainer = () => {
 
         <div className="flex items-center space-x-3">
           <FaRegCalendarAlt size={24} className="text-yellow-500" />
-          <p className="text-xl font-medium">Selected Day: {booking.selectedDay || "Not available"}</p>
+          <p className="text-xl font-medium">Selected Slot: {booking.selectedDay || "Not available"}</p>
         </div>
 
         <div className="flex items-center space-x-3">

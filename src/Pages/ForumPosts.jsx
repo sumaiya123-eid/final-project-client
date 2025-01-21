@@ -1,5 +1,5 @@
 import React from "react";
-import { FaInfoCircle, FaUserShield, FaUserTie } from "react-icons/fa";
+import { FaArrowRight, FaInfoCircle, FaUserShield, FaUserTie } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic"; // Assuming this is where axiosPublic is defined
 import Swal from "sweetalert2";
@@ -112,6 +112,11 @@ const ForumPosts = () => {
           </div>
         ))}
       </div>
+       <div className="flex justify-end mt-3">
+              <Link to="/allForum">
+              <button className="bg-black btn border-none text-white font-bold flex items-center gap-1">See all Post <FaArrowRight></FaArrowRight ></button>
+              </Link>
+              </div>
     </div>
   );
 };

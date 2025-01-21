@@ -148,6 +148,18 @@ const BeATrainer = () => {
           />
         </div>
 
+         {/* Profile Image */}
+         <div className="form-control w-full my-6">
+          <label className="label">
+            <span className="label-text text-white">Profile Image*</span>
+          </label>
+          <input
+            {...register("profileImage", { required: true })}
+            type="file"
+            className="file-input w-full max-w-xs"
+          />
+        </div>
+
         {/* Skills */}
         <div className="form-control w-full my-6">
           <label className="label">
@@ -211,17 +223,6 @@ const BeATrainer = () => {
           />
         </div>
 
-        {/* Profile Image */}
-        <div className="form-control w-full my-6">
-          <label className="label">
-            <span className="label-text text-white">Profile Image*</span>
-          </label>
-          <input
-            {...register("profileImage", { required: true })}
-            type="file"
-            className="file-input w-full max-w-xs"
-          />
-        </div>
 
         {/* Classes */}
         <div className="form-control w-full my-6">

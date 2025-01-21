@@ -188,7 +188,7 @@ const ForumPage = () => {
       </div>
 
       {/* Pagination */}
-      <div className="pagination mt-12 flex justify-center items-center space-x-2">
+      <div className="pagination mt-12 mb-5 flex justify-center items-center space-x-2">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}

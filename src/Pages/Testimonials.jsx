@@ -36,7 +36,7 @@ const Testimonials = () => {
   }
 
   return (
-    <div className="w-10/12 mx-auto mt-12 p-10 bg-black animate__animated animate__fadeInUp rounded-lg shadow-lg">
+    <div className="md:w-10/12 mx-auto mt-12 p-2 md:p-10 bg-black animate__animated animate__fadeInUp rounded-lg shadow-lg">
       <h2 className="text-3xl font-semibold text-yellow-500 my-4 text-center">Customer Testimonials</h2>
 
       {/* Swipe Right to See More Reviews */}
@@ -63,7 +63,7 @@ const Testimonials = () => {
       >
         {data.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="border-2 *:text-yellow-500 border-yellow-600 rounded-lg p-6 shadow-xl bg-black transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+            <div className="border-2 max-h-64 border-yellow-600 rounded-lg p-6 shadow-xl bg-black transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
               <div className="flex items-center mb-3">
                 <div className="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
                   <p className="text-xl font-semibold text-white">
@@ -84,7 +84,8 @@ const Testimonials = () => {
                   activeColor="#ffd700"
                 />
               </div>
-              <p className="text-black">{review.feedback}</p>
+              <p className="text-white text-xs flex gap-1 items-center mb-2"><p className="text-yellow-500">Trainer Email :</p>{review.trainerEmail}</p>
+              <p className="text-yellow-500">{review.feedback}</p>
             </div>
           </SwiperSlide>
         ))}

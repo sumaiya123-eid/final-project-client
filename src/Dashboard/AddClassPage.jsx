@@ -106,7 +106,7 @@ const AddClassPage = () => {
   return (
     <div className="container my-5 w-10/12 mx-auto p-6 border border-yellow-500 ">
       <Helmet>
-                    <title>FitTrick | Dashboard | Add Class</title>
+                    <title>FitConnect | Dashboard | Add Class</title>
                   </Helmet>
       <h1 className="text-3xl text-yellow-500 font-semibold mb-6">Add New Class</h1>
 

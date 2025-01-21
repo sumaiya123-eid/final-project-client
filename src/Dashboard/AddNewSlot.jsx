@@ -111,7 +111,7 @@ const AddNewSlot = () => {
   return (
     <div className="w-10/12 mx-auto my-10">
       <Helmet>
-                    <title>FitTrick | Dashboard | Add Slots</title>
+                    <title>FitConnect | Dashboard | Add Slots</title>
                   </Helmet>
       <h2 className="text-3xl text-yellow-500 font-bold">Add New Slot</h2>
       <form onSubmit={handleSubmit(onSubmit)}>

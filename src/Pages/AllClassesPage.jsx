@@ -61,7 +61,7 @@ const AllClassesPage = () => {
   return (
     <div className="bg-black w-11/12 md:w-10/12 mx-auto min-h-screen py-10 md:px-4">
       <Helmet>
-              <title>FitTrick | All Classes</title>
+              <title>FitConnect | All Classes</title>
             </Helmet>
       <h1 className="text-3xl font-bold text-yellow-500 text-center mb-8">All Classes</h1>
 

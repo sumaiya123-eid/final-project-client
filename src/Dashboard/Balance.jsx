@@ -8,7 +8,7 @@ export default function Balance() {
   return (
     <div>
       <Helmet>
-                    <title>FitTrick | Dashboard | Balance</title>
+                    <title>FitConnect | Dashboard | Balance</title>
                   </Helmet>
         <StatsCard></StatsCard>
         <LatestBookings></LatestBookings>

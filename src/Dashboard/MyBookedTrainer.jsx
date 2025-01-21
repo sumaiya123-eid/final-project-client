@@ -90,7 +90,7 @@ const MyBookedTrainer = () => {
   return (
     <div className="max-w-4xl mx-auto mt-8 p-6 bg-black text-white animate__animated animate__fadeInUp">
       <Helmet>
-                    <title>FitTrick | Dashboard | Booked Trainer</title>
+                    <title>FitConnect | Dashboard | Booked Trainer</title>
                   </Helmet>
       <h2 className="text-3xl font-semibold text-yellow-500 mb-6 text-center">Booked Trainer Details</h2>
 

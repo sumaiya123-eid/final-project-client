@@ -76,7 +76,7 @@ const ActivityLog = () => {
   return (
     <section className="bg-black py-16 min-h-screen">
       <Helmet>
-                    <title>FitTrick | Dashboard | Activity Log</title>
+                    <title>FitConnect | Dashboard | Activity Log</title>
                   </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-white mb-8 text-center drop-shadow-lg">

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <Helmet>
-                    <title>FitTrick | Home</title>
+                    <title>FitConnect | Home</title>
                   </Helmet>
         <Banner></Banner>
         <Featured></Featured>

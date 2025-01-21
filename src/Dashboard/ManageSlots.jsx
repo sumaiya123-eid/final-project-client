@@ -97,7 +97,7 @@ const ManageSlots = () => {
   return (
     <div className="p-4">
       <Helmet>
-                    <title>FitTrick | Dashboard | Manage Slots</title>
+                    <title>FitConnect | Dashboard | Manage Slots</title>
                   </Helmet>
       <h2 className="text-3xl font-bold mb-4 text-yellow-500">Manage Slots</h2>
       {slots?.availableDays?.length === 0 ? (

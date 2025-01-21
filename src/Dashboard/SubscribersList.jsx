@@ -35,7 +35,7 @@ const SubscribersList = () => {
   return (
     <div className="bg-black text-white py-12 px-4">
       <Helmet>
-                    <title>FitTrick | Dashboard | All Newsletter Subscriber</title>
+                    <title>FitConnect | Dashboard | All Newsletter Subscriber</title>
                   </Helmet>
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-yellow-400 text-center mb-8">

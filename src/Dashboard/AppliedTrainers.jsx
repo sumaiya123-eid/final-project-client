@@ -25,7 +25,7 @@ const AppliedTrainers = () => {
   return (
     <div className="w-10/12 mx-auto my-10">
       <Helmet>
-                    <title>FitTrick | Dashboard | Applied Trainer</title>
+                    <title>FitConnect | Dashboard | Applied Trainer</title>
                   </Helmet>
       <h2 className="text-2xl text-yellow-500 font-bold mb-6">Applied Trainers</h2>
       {appliedTrainers.length > 0 ? (

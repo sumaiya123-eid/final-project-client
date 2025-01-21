@@ -106,7 +106,7 @@ export default function MyProfile() {
   return (
     <div className="min-h-screen bg-black flex justify-center items-center p-6 ">
       <Helmet>
-                    <title>FitTrick | Dashboard | Profile</title>
+                    <title>FitConnect | Dashboard | Profile</title>
                   </Helmet>
       <div className="w-full max-w-sm bg-black border-2 border-yellow-400 rounded-xl shadow-lg  p-6 space-y-4 animate__animated animate__fadeInUp">
         <div className="flex justify-center mb-4">

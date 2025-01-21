@@ -50,7 +50,7 @@ const TrainersList = () => {
   return (
     <div className=" w-10/12 mx-auto mt-10 min-h-screen">
        <Helmet>
-                    <title>FitTrick | Dashboard | All Trainers</title>
+                    <title>FitConnect | Dashboard | All Trainers</title>
                   </Helmet>
       <h2 className="text-2xl text-yellow-500 font-bold mb-6">All Trainers</h2>
       {trainers.length > 0 ? (

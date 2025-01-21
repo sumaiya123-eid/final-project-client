@@ -51,7 +51,7 @@ const AllTrainers = () => {
   return (
     <section className="bg-black py-16">
       <Helmet>
-        <title>FitTrick | All Trainers</title>
+        <title>FitConnect | All Trainers</title>
       </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-yellow-500 mb-12 text-center drop-shadow-lg">

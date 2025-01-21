@@ -81,7 +81,7 @@ const AddForum = () => {
   return (
     <div className="container mx-auto px-4 py-10">
       <Helmet>
-                    <title>FitTrick | Dashboard | Add Forum</title>
+                    <title>FitConnect | Dashboard | Add Forum</title>
                   </Helmet>
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-500">Create a Forum Post</h1>
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-black border border-yellow-500 p-6 shadow-md rounded-lg">

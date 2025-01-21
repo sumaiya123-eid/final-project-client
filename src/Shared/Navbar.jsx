@@ -55,10 +55,10 @@ export default function Navbar() {
         }
 
           {
-            user && isTrainer && <li className="text-white "><Link to="/dashboard/activityLog">Dashboard</Link></li>
+            user && isTrainer && <li className="text-white "><Link to="/dashboard/addForum">Dashboard</Link></li>
         }
         {
-            user && !isAdmin && !isTrainer && <li className="text-white"><Link to="/dashboard/myBookedTrainer">Dashboard</Link></li>
+            user && !isAdmin && !isTrainer && <li className="text-white"><Link to="/dashboard/activityLog">Dashboard</Link></li>
         }
           </ul>
         </div>

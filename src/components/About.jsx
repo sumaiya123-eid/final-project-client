@@ -7,7 +7,7 @@ const About = () => {
     <section className="bg-black py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
-        <Slide direction="left" triggerOnce={false}>
+        <Slide direction="down" triggerOnce={false}>
           <div className="text-center md:text-left text-white">
             <h2 className="text-3xl font-bold mb-6 text-yellow-400">About Us</h2>
             <p className="text-gray-300 text-lg mb-6">
@@ -29,7 +29,7 @@ const About = () => {
         </Slide>
 
         {/* Image with animation */}
-        <Fade direction="right" triggerOnce={false}>
+        <Fade direction="up" triggerOnce={false}>
           <div>
             <img
               src={aboutImage}

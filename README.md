@@ -1,13 +1,16 @@
-# Project Name: FitTrick  
-*Live URL:* [https://fitnesspro.example.com](https://fitnesspro.example.com)  
+# Project Name: FitConnect 
+*Live URL:* [https://earnest-sprinkles-ba5afd.netlify.app/](https://earnest-sprinkles-ba5afd.netlify.app/)  
 
 ## Description
-FitnessPro is a modern fitness platform designed to connect users with professional trainers, offering flexible class schedules and payment plans.
+FitConnect is a modern fitness platform designed to connect users with professional trainers, offering flexible class schedules and payment plans.
+
+## *Admin Details*  
+   - *Admin Email:* admin1@google.com  
+   - *Admin Password:* Aa1234  
 
 ## Features  
-1. *Admin Details*  
-   - *Admin Name:* John Doe  
-   - *Admin Email:* admin@fitnesspro.com  
+1. *Beautiful Standard Theme*  
+   - Features a visually appealing, modern theme with a clean layout, smooth animations, and a consistent color palette to enhance user experience across all pages.  
 
 2. *User Authentication*  
    - Supports user registration and login with role-based access (user, trainer, admin).  

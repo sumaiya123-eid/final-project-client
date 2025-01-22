@@ -32,6 +32,8 @@ import NewsletterSubscription from "../Pages/NewsletterSubscription";
 import SubscribersList from "../Dashboard/SubscribersList";
 import Balance from "../Dashboard/Balance";
 import ErrorPage from "../Pages/ErrorPage";
+import NutritionCalculator from "../Pages/NutritionCalculator";
+import BMICalculator from "../Pages/BMICalculator";
 
 
  export const router = createBrowserRouter([
@@ -75,6 +77,14 @@ import ErrorPage from "../Pages/ErrorPage";
         {
             path:"/forumDetails/:id",
             element:<ForumDetails></ForumDetails>,
+          },
+        {
+            path:"/nutritionCalculator",
+            element:<NutritionCalculator></NutritionCalculator>,
+          },
+        {
+            path:"/bmiCalculator",
+            element:<BMICalculator></BMICalculator>,
           },
         {
             path:'/login',

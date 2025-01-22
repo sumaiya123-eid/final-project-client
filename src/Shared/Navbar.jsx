@@ -106,6 +106,26 @@ export default function Navbar() {
           >
             All Forum
           </NavLink>
+        <NavLink
+            to="/nutritionCalculator"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            Nutrition Calculator
+          </NavLink>
+        <NavLink
+            to="/bmiCalculator"
+            className={({ isActive }) =>
+              isActive
+                ? "text-black font-bold underline"
+                : "text-black font-bold"
+            }
+          >
+            BMI Calculator
+          </NavLink>
           {
             user && isAdmin && <li className="text-black font-bold"><Link to="/dashboard/subscribers">Dashboard</Link></li>
         }
